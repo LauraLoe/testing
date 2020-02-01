@@ -18,18 +18,27 @@ description = "Deep Learning in Survival Analysis"
 
 * [1. Motivation](#first)
 * [2. Basics of Survival Analysis](#second)
+
 ** [2.a Common terms](#second_a)
+
 ** [2.b Survival function](#second_b)
 ** [2.c Hazard function](#second_c)
 * [3. Introduction to dataset, Exploratory Analysis, Preprocessing](#three)
 * [4. Standard Methods in Survival Analysis](#four)
+
 ** [4.a Kaplan-Meier estimate](#four_a)
+
 ** [4.b Cox Proportional Hazard Model](#four_b)
+
 ** [4.c Time-Varying Cox Regression Model](#four_c)
+
 ** [4.d Random Survival Forests](#four_d)
 * [5. Deep Learning in Survival Analysis](#five)
+
 ** [5.a DeepSurv](#five_a)
+
 ** [5.b Deep Hit](#five_b)
+
 * [6. Evaluation](#six) 
 * [7. Conclusion](#seven)
 * [8. References](#eight)
