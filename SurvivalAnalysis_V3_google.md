@@ -1,10 +1,10 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
 date = '2020-02-01' 
-tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
+tags = [ "Deep Learning", "Neural Networks",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
-banner = "img/seminar/group2_SurvivalAnalysis/output_13_0.png"
+banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Deep Learning in Survival Analysis"
 +++
@@ -96,11 +96,8 @@ At the start of the study (t=0), no subject has experienced the event yet. There
 from IPython.display import Image
 Image(filename='Survival_curve.png',width=800, height=350) 
 ```
-<p align="center">
-  <img width="600" src="/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png">
-</p>
+![hu logo]<img align="center" width="200" height="200" src="/blog/img/seminar/sample/hu-logo.jpg">
 
----
 <br>
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
