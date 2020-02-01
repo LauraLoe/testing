@@ -1,11 +1,11 @@
 +++ 
-title = "Survival analysis" 
+title = "Deep Learning in Survival analysis" 
 date = '2020-02-01' 
-tags = [ "Deep Learning", "Neural Networks", "Class17/18",]
+tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
 author = "Class of Winter Term 2019 / 2020" 
 disqusShortname = "https-humbodt-wi-github-io-blog" 
-description = "Survival Analysis"
+description = "Deep Learning in Survival Analysis"
 +++
 
 
