@@ -10,14 +10,14 @@ description = "Deep Learning in Survival Analysis"
 
 
 # Deep Learning for Survival Analysis
-<br>
+
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ---
 
 ## Table of content
-1. [Motivation](#motivation) <br />
-2. [Basics of Survival Analysis](#introduction_sa) <br />
+1. [Motivation](#motivation)
+2. [Basics of Survival Analysis](#introduction_sa)
 2.1 [Common terms](#terms) <br />
 2.2 [Survival function](#survival_function) <br />
 2.3 [Hazard function](#hazard_function) <br />
