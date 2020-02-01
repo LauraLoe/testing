@@ -1,26 +1,38 @@
++++ 
+title = "Deep Learning for Survival analysis" 
+date = '2020-02-01' 
+tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
+categories = ["course projects"] 
+author = "Seminar Information Systems WS19/20" 
+disqusShortname = "https-humbodt-wi-github-io-blog" 
+description = "Deep Learning in Survival Analysis"
++++
+
+
 # Deep Learning for Survival Analysis
+<br>
+#### Authors: Laura Löschmann, Daria Smorodina
 
 ---
 
 ## Table of content
-
-* [1. Motivation](#motivation)
-* [2. Introduction to Survival Analysis](#introduction_sa)
-** [2.1 Common terms](#terms)
-** [2.2 Survival function](#survival_function)
-** [2.3 Hazard function](#hazard_function)
-* [3. Dataset](#dataset)
-* [4. Standard Methods in Survival Analysis](#standard_methods)
-** [4.1 Kaplan-Meier estimate](#kmf)
-** [4.2 Cox Proportional Hazard Model](#coxph)
-** [4.3 Time-Varying Cox Regression Model](#time_cox)
-** [4.4 Random Survival Forests](#rsf)
-* [5. Deep Learning in Survival Analysis](#deeplearning_sa)
-** [5.1 DeepSurv](#deepsurv)
-** [5.2 Deep Hit](#deephit)
-* [6. Evaluation](#evaluation) 
-* [7. Conclusion](#conclusion)
-* [8. References](#references)
+1. [Motivation](#motivation) <br />
+2. [Basics of Survival Analysis](#introduction_sa) <br />
+2.1 [Common terms](#terms) <br />
+2.2 [Survival function](#survival_function) <br />
+2.3 [Hazard function](#hazard_function) <br />
+3. [Dataset](#dataset) <br />
+4. [Standard Methods in Survival Analysis](#standard_methods) <br />
+4.1 [Kaplan-Meier estimate](#kmf) <br />
+4.2 [Cox Proportional Hazard Model](#coxph) <br />
+4.3 [Time-Varying Cox Regression Model](#time_cox) <br />
+4.4 [Random Survival Forests](#rsf) <br />
+5. [Deep Learning in Survival Analysis](#deeplearning_sa) <br />
+5.1 [DeepSurv](#deepsurv) <br />
+5.2 [Deep Hit](#deephit) <br />
+6. [Evaluation](#evaluation)  <br />
+7. [Conclusion](#conclusion) <br />
+8. [References](#references) <br />
 
 ---
 
