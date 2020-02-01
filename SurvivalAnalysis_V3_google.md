@@ -3,7 +3,7 @@ title = "Deep Learning for Survival analysis"
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
-author = "Seminar Information Systems WS19/20" 
+author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Deep Learning in Survival Analysis"
 +++
@@ -13,7 +13,7 @@ description = "Deep Learning in Survival Analysis"
 
 ---
 
-## Authors: Laura Löschmann, Daria Smorodina
+#### Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
 1. [Motivation](#motivation)
@@ -36,7 +36,7 @@ description = "Deep Learning in Survival Analysis"
 
 ---
 
-<script src="https://gist.github.com/dariasmorodina/2bef82e25a6c2d16861f744dbdb76993.js"></script>
+<script src="https://gist.github.com/dariasmorodina/709038de14c8538988e6a8c04b397e9e.js"></script>
 
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
