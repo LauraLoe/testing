@@ -33,6 +33,23 @@ description = "Deep Learning in Survival Analysis"
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
 ---
+1. [Introduction](#introduction)<br />
+2. [Common Marketing Challenges](#challenges)<br />
+3. [Models](#models) </br>
+3.1 [Decision Trees Rzepakowski & Jaroszewicz](#decisiontree) </br> 
+3.1.1 [Basic Rzepakowski & Jaroszewicz](#basic) </br>
+3.1.2 [Simple Splitting Criterion](#simple) </br>
+3.2 [Causal Tree and Causal Forest](#causaltree) </br>
+3.3 [Separate Model](#separate) <br />
+4. [Evaluation Methods](#evaluationmethods)<br />
+4.1 [Uplift Curves](#uplift_curves)</br>
+4.2 [Expected Outcome](#expected_outcome)</br>
+5. [Experimental Setup](#experiment) <br />
+6. [Results](#evaluationresults)
+7. [Outlook](#outlook)
+8. [References](#references)
+
+
 
 <br>
 
@@ -98,7 +115,7 @@ from IPython.display import Image
 Image(filename='Survival_curve.png',width=800, height=350) 
 ```
 
-![example](/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png)
+![example]<img align="center" width="200" height="200" src="/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png">
 
 ---
 <br>
