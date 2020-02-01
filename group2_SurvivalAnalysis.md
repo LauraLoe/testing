@@ -32,10 +32,10 @@ description = "Deep Learning in Survival Analysis"
 6. [Evaluation](#evaluation)  <br />
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
+
 ---
 
-<br>
-## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
+# 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
 Previously impairment losses on financial assets were only recognised to the extent that there was an objective evidence of impairment, meaning a loss event needed to occur before an impairment loss could be booked. [2] The new accounting rules for financial instruments require banks to build provisions for expected losses in their loan portfolio. The loss allowance has to be recognised before the actual credit loss is incurred. It is a more forward-looking approach than its predecessor with the aim to result in a more timely recognition of credit losses. [3]
@@ -44,7 +44,6 @@ To implement the new accounting rules banks need to build models that can evalua
 
 ---
 
-<br> 
 # 2. Introduction to Survival Analysis <a class="anchor" id="introduction_sa"></a>
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
@@ -53,6 +52,8 @@ The development of survival analysis dates back to the 17th century with the fir
 
 Survival Analysis can be used in the field of health insurance to evaluate insurance premiums. It can be a useful tool in customer retention e.g. in order to estimate the time a customer probably will discontinue its subscription. With this information the company can intervene with some incentives early enough to retain its customer. The accurate prediction of upcoming churners results in highly-targeted campaigns, limiting the resources spent on customers who likely would have stayed anyway.
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
+
+---
 
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
 Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
@@ -90,7 +91,7 @@ $$S(t) = Pr(T > t)$$
 T is the random lifetime taken from the population under study and cannot be negative. With regard to the business case it is the amount of time a customer is able to pay his loan rates, he is not defaulting. The survival function S (t) outputs values between 0 and 1 and is a non-increasing function of t.
 At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(∞) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
 
-![hu logo]<img align="center" width="200" height="200" src="/blog/img/seminar/sample/hu-logo.jpg">
+![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png)
 
 ---
 
@@ -116,6 +117,8 @@ The above shown graph is a theoretical example for a hazard function. [11] This 
 It could describe the probability of a customer unsubscribing from a magazine over time. Within the first 30 days the risk to unsubscribe is high, since the customer is testing the product. But if the customer likes the content, meaning he "survives" the first 30 days, the risk of unsubscribing decreased and stagnates at lower level. After a while the risk is increasing again since the customer maybe needs different input or got bored over time. Hence the graph gives the important information when to initiate incentives for those customers whose risk to unsubsribe is about to increase in order to retain them.
 
 The main goal of survival analysis is to estimate and interpret survival and/or hazard functions from survival data. 
+ 
+---
 
 # 3. Dataset <a class="anchor" id="dataset"></a>
 
