@@ -12,7 +12,9 @@ description = "Deep Learning in Survival Analysis"
 # Deep Learning for Survival Analysis and Competing Risks
 
 ---
+
 ### Authors: Laura Löschmann, Daria Smorodina
+
 ---
 
 ## Table of content
