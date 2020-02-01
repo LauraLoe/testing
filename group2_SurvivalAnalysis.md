@@ -17,23 +17,23 @@ description = "Deep Learning in Survival Analysis"
 ---
 
 ## Table of content
-1. [Motivation](#first)
-2. [Basics of Survival Analysis](#second)
-2.1 [Common terms](#second_a)
-2.2 [Survival function](#second_b)
-2.3 [Hazard function](#second_c)
-3. [Introduction to dataset, Exploratory Analysis, Preprocessing](#three)
-4. [Standard Methods in Survival Analysis](#four)
-4.1 [Kaplan-Meier estimate](#four_a)
-4.2 [Cox Proportional Hazard Model](#four_b)
-4.3 [Time-Varying Cox Regression Model](#four_c)
-4.4 [Random Survival Forests](#four_d)
-5. [Deep Learning in Survival Analysis](#five)
-5.1 [DeepSurv](#five_a)
-5.2 [Deep Hit](#five_b)
-6. [Evaluation](#six) 
-7. [Conclusion](#seven)
-8. [References](#eight)
+1. [Motivation](#first) <br />
+2. [Basics of Survival Analysis](#second) <br />
+2.1 [Common terms](#second_a) <br />
+2.2 [Survival function](#second_b) <br />
+2.3 [Hazard function](#second_c) <br />
+3. [Introduction to dataset, Exploratory Analysis, Preprocessing](#three) <br />
+4. [Standard Methods in Survival Analysis](#four) <br />
+4.1 [Kaplan-Meier estimate](#four_a) <br />
+4.2 [Cox Proportional Hazard Model](#four_b) <br />
+4.3 [Time-Varying Cox Regression Model](#four_c) <br />
+4.4 [Random Survival Forests](#four_d) <br />
+5. [Deep Learning in Survival Analysis](#five) <br />
+5.1 [DeepSurv](#five_a) <br />
+5.2 [Deep Hit](#five_b) <br />
+6. [Evaluation](#six)  <br />
+7. [Conclusion](#seven) <br />
+8. [References](#eight) <br />
 
 ---
 
