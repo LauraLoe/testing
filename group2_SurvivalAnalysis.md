@@ -1,5 +1,5 @@
 +++ 
-title = "Deep Learning in Survival analysis" 
+title = "Deep Learning for Survival analysis" 
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
@@ -10,9 +10,8 @@ description = "Deep Learning in Survival Analysis"
 
 
 # Deep Learning for Survival Analysis
-
-
-### Authors: Laura Löschmann, Daria Smorodina
+<br>
+#### Authors: Laura Löschmann, Daria Smorodina
 
 ---
 
