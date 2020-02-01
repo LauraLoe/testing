@@ -102,15 +102,7 @@ $$h(t) = \lim_{\delta t\to 0}\frac{Pr(t≤T≤t+\delta t | T>t)}{\delta t}$$
 
 Therefore the hazard function models which periods have the highest or lowest chances of an event. In contrast to the survival function, the hazard function does not have to start at 1 and go down to 0. The hazard rate usually changes over time. It can start anywhere and go up and down over time. For instance the probability of defaulting on a mortgage may be low in the beginning but can increase over the time of the mortgage.
 
-
-```python
-from IPython.display import Image
-Image(filename='hazard-function.png',width=400, height=350) 
-```
-
-![png](output_16_0.png)
-
-
+![hazard_function](/blog/img/seminar/group2_SurvivalAnalysis/hazard_function.png)
 
 The above shown graph is a theoretical example for a hazard function. [11] This specific hazard function is also called bathtub curve due to its form. This graph shows the probability of an event of interest to occur over time. 
 
@@ -3722,36 +3714,14 @@ To also handle competing risks DeepHit provides a flexible multi-task learning a
 Multi-task learning was originally inspired by human learning activities. People often apply the  knowledge learned from previous tasks to help learn a new task. For example, for a person who learns to ride the bicycle and unicycle together, the experience in learning to ride a bicycle can be utilized in riding a unicycle and vice versa. Similar to human learning, it is useful for multiple learning tasks to be learned jointly since the knowledge contained in a task can be leveraged by other tasks. 
 In the context of deep learning models, multiple models could be trained, each model only learning one tasks (a). If this multiple tasks are related to each other, a multi-task learning model can be used with the aim to improve the learning of a model by using the knowledge achieved throughout the learning of related tasks in parallel (b). [y] 
 
-
-```python
-from IPython.display import Image
-Image(filename='STLvsMTL.png',width=400, height=480) 
-```
-
-
-
-
-![png](output_209_0.png)
-
-
+![mult_task1](/blog/img/seminar/group2_SurvivalAnalysis/multitasking_1.png)
 
 Multi-task learning is similar to transfer learning but has some significant differences. Transfer learning models use several source tasks in order to improve the performance on the target task. Multi-task learning models treat all tasks equally, there is no task importance hierarchy. There is no attention focus on one specific task. The goal of multi-task learning models is to improve the performance of all tasks.
 
 The most commonly used approach to multi-task learning in neural networks is called hard parameter sharing. The general architecture of such a multi-task learning model describes two main parts. The first part is a shared sub-network, where the model learns the common representation of the related tasks. The model then splits into task-specific sub-networks in order to learn the non-common parts of the representation. The number of task-specific sub-networks is equal to the number of related tasks the model is trained on.
 For the sake of completeness another approach to multi-task learning is soft parameter sharing that describes an architecture where each task has its own model with its own parameters. To encourage the parameters to become similar regularisation techniques are applied between the parameters of the task-specific models. Since DeepHit provides an architecture of hard parameter sharing, the approach of soft parameter sharing will be neglected in further explanations.
 
-
-```python
-from IPython.display import Image
-Image(filename='MTLarch.png',width=500, height=350) 
-```
-
-
-
-
-![png](output_211_0.png)
-
-
+![mult_task2](/blog/img/seminar/group2_SurvivalAnalysis/multitasking_2.png)
 
 To train a multi-task learning model just as many loss functions as tasks are required. The model is then trained by backpropagation. The fact that the task-specific sub-networks share common hidden layers, allows comprehensive learning. Through the shared hidden layers features that are developed in the hidden layers of one task can also be used by other tasks. Multi-task learning enables features to be developed to support several tasks which would not be possible if multiple singe-task learning models would be trained on the related tasks in isolation. Also some hidden units can specialise on one task, providing information that are not important for the other tasks. By keeping the weights to these hidden units small gives these tasks the opportunity to ignore these hidden units. [z] 
 
@@ -3760,18 +3730,7 @@ Moreover by learning multiple tasks together the network has to focus on importa
 Some tasks are harder to learn even by themselves. A model can benefit from learning the hard task combined with an easier related task. Multi-task learning allows the model to eavesdrop, learn the hard task through the simple related task, and therefore learn the hard task easier and faster than learning the hard task in isolation. 
 In addition different related tasks can treat each other as a form of regularisation term since the model has to learn a general representation of all tasks. Learning the tasks in a single-task learning approach would bear the risk of overfitting on one task. [a] 
 
-
-```python
-from IPython.display import Image
-Image(filename='DeepHit.png',width=500, height=400) 
-```
-
-
-
-
-![png](output_213_0.png)
-
-
+![deephit](/blog/img/seminar/group2_SurvivalAnalysis/deephit.png)
 
 The architecture of the DeepHit model is similar to the conventional multi-task learning architecture of hard parameter sharing, but has two main differences. DeepHit provides a residual connection between the original covariates and the input of the cause-specific sub-networks. This means that the input of the cause-specific sub-networks is not only the output of the preceded shared sub-network but also the original covariates. These additional input allows the cause-specific sub-network to better learn the non-common representation of the multiple causes.
 The other difference refers to the final output of the model. DeepHit uses one single softmax output layer so that the model can learn the joint distribution of the competing events instead of their marginal distribution. Thus the output of the DeepHit model is a vector for every subject in the dataset giving the probabilities that the subject with covariates x will experience the event k for every timestamp t within the observation time. The probabilities of one subject sum up to 1.
