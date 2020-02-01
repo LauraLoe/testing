@@ -15,8 +15,6 @@ description = "Deep Learning in Survival Analysis"
 
 ### Authors: Laura Löschmann, Daria Smorodina
 
----
-
 ## Table of content
 
 * [1. Motivation](#first)
