@@ -20,16 +20,16 @@ description = "Deep Learning in Survival Analysis"
 2. [Basics of Survival Analysis](#introduction_sa)
 * 2.1 [Common terms](#terms) <br />
 * 2.2 [Survival function](#survival_function) <br />
-2.3 [Hazard function](#hazard_function) <br />
+* 2.3 [Hazard function](#hazard_function) <br />
 3. [Dataset](#dataset) <br />
 4. [Standard Methods in Survival Analysis](#standard_methods) <br />
-4.1 [Kaplan-Meier estimate](#kmf) <br />
-4.2 [Cox Proportional Hazard Model](#coxph) <br />
-4.3 [Time-Varying Cox Regression Model](#time_cox) <br />
-4.4 [Random Survival Forests](#rsf) <br />
+* 4.1 [Kaplan-Meier estimate](#kmf) <br />
+* 4.2 [Cox Proportional Hazard Model](#coxph) <br />
+* 4.3 [Time-Varying Cox Regression Model](#time_cox) <br />
+* 4.4 [Random Survival Forests](#rsf) <br />
 5. [Deep Learning in Survival Analysis](#deeplearning_sa) <br />
-5.1 [DeepSurv](#deepsurv) <br />
-5.2 [Deep Hit](#deephit) <br />
+* 5.1 [DeepSurv](#deepsurv) <br />
+* 5.2 [Deep Hit](#deephit) <br />
 6. [Evaluation](#evaluation)  <br />
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
@@ -38,10 +38,7 @@ description = "Deep Learning in Survival Analysis"
 
 <script src="https://gist.github.com/dariasmorodina/2f601e39a53caeef3c02d7256cc1fac1.js"></script>
 
-<img align="center" width="200" height="200"
-     style="display:block;margin:0 auto;" 
-	 src="/blog/content/research/output_13_0.pnf">
-
+![hu logo]<img align="center" width="200" height="200" src="/blog/img/seminar/sample/output_13_0.png">
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
