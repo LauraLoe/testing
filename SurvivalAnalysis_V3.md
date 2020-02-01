@@ -1,3 +1,5 @@
++++ title = "Survival analysis" date = '2020-02-01' tags = [ "Survival Analysis"] categories = ["course projects"] author = "Class of Winter Term 2019 / 2020" disqusShortname = "https-humbodt-wi-github-io-blog" description = "Survival Analysis" +++
+
 # Deep Learning for Survival Analysis and Competing Risks
 
 ---
