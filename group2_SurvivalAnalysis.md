@@ -3,7 +3,7 @@ title = "Deep Learning in Survival analysis"
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
-author = "Class of Winter Term 2019 / 2020" 
+author = "Seminar Information Systems WS19/20" 
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Deep Learning in Survival Analysis"
 +++
@@ -11,6 +11,8 @@ description = "Deep Learning in Survival Analysis"
 
 # Deep Learning for Survival Analysis and Competing Risks
 
+---
+### Authors: Laura Löschmann, Daria Smorodina
 ---
 
 ## Table of content
