@@ -11,15 +11,15 @@ description = "Deep Learning in Survival Analysis"
 
 # Deep Learning for Survival Analysis
 
-#### Authors: Laura Löschmann, Daria Smorodina
-
 ---
+
+## Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
 1. [Motivation](#motivation)
 2. [Basics of Survival Analysis](#introduction_sa)
-2.1 [Common terms](#terms) <br />
-2.2 [Survival function](#survival_function) <br />
+* 2.1 [Common terms](#terms) <br />
+* 2.2 [Survival function](#survival_function) <br />
 2.3 [Hazard function](#hazard_function) <br />
 3. [Dataset](#dataset) <br />
 4. [Standard Methods in Survival Analysis](#standard_methods) <br />
@@ -35,6 +35,9 @@ description = "Deep Learning in Survival Analysis"
 8. [References](#references) <br />
 
 ---
+
+<script src="https://gist.github.com/dariasmorodina/2bef82e25a6c2d16861f744dbdb76993.js"></script>
+
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
