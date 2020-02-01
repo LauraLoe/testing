@@ -4,7 +4,7 @@ date = '2020-02-01'
 tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
-banner = "img/seminar/causal_rec/output_13_0.png"
+banner = "img/seminar/group2_SurvivalAnalysis/output_13_0.png"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Deep Learning in Survival Analysis"
 +++
@@ -37,7 +37,7 @@ description = "Deep Learning in Survival Analysis"
 <script src="https://gist.github.com/dariasmorodina/2f601e39a53caeef3c02d7256cc1fac1.js"></script>
 
 <p align="center">
-  <img width="600" src="/blog/img/seminar/output_13_0.png">
+  <img width="600" src="/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png">
 </p>
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
