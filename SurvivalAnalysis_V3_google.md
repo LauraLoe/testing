@@ -17,9 +17,9 @@ description = "Deep Learning in Survival Analysis"
 ## Table of content
 1. [Motivation](#motivation) <br/>
 2. [Basics of Survival Analysis](#introduction_sa)<br/>
-2.1 [Common terms](#terms) <br />
-2.2 [Survival function](#survival_function) <br />
-2.3 [Hazard function](#hazard_function) <br />
+* 2.1 [Common terms](#terms) <br />
+* 2.2 [Survival function](#survival_function) <br />
+* 2.3 [Hazard function](#hazard_function) <br />
 3. [Dataset](#dataset) <br />
 4. [Standard Methods in Survival Analysis](#standard_methods) <br />
 * 4.1 [Kaplan-Meier estimate](#kmf) <br />
@@ -33,26 +33,8 @@ description = "Deep Learning in Survival Analysis"
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
 ---
-1. [Introduction](#introduction)<br />
-2. [Common Marketing Challenges](#challenges)<br />
-3. [Models](#models) </br>
-3.1 [Decision Trees Rzepakowski & Jaroszewicz](#decisiontree) </br> 
-3.1.1 [Basic Rzepakowski & Jaroszewicz](#basic) </br>
-3.1.2 [Simple Splitting Criterion](#simple) </br>
-3.2 [Causal Tree and Causal Forest](#causaltree) </br>
-3.3 [Separate Model](#separate) <br />
-4. [Evaluation Methods](#evaluationmethods)<br />
-4.1 [Uplift Curves](#uplift_curves)</br>
-4.2 [Expected Outcome](#expected_outcome)</br>
-5. [Experimental Setup](#experiment) <br />
-6. [Results](#evaluationresults)
-7. [Outlook](#outlook)
-8. [References](#references)
-
-
 
 <br>
-
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
@@ -114,8 +96,9 @@ At the start of the study (t=0), no subject has experienced the event yet. There
 from IPython.display import Image
 Image(filename='Survival_curve.png',width=800, height=350) 
 ```
-
-![example]<img align="center" width="200" height="200" src="/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png">
+<p align="center">
+  <img width="600" src="/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png">
+</p>
 
 ---
 <br>
