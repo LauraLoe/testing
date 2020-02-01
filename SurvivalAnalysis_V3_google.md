@@ -4,15 +4,14 @@ date = '2020-02-01'
 tags = [ "Deep Learning", "Neural Networks", "Class19/20",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
+banner = "img/seminar/causal_rec/output_13_0.png"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Deep Learning in Survival Analysis"
 +++
 
 
 # Deep Learning for Survival Analysis
-
 ---
-
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
@@ -33,12 +32,13 @@ description = "Deep Learning in Survival Analysis"
 6. [Evaluation](#evaluation)  <br />
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
-
 ---
 
 <script src="https://gist.github.com/dariasmorodina/2f601e39a53caeef3c02d7256cc1fac1.js"></script>
 
-![hu logo]<img align="center" width="200" height="200" src="/blog/img/seminar/output_13_0.png">
+<p align="center">
+  <img width="600" src="/blog/img/seminar/output_13_0.png">
+</p>
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
