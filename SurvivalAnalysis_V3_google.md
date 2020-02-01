@@ -15,11 +15,11 @@ description = "Deep Learning in Survival Analysis"
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
-1. [Motivation] (#motivation)
+1. [Motivation] (#motivation) <br/>
 2. [Basics of Survival Analysis] (#introduction_sa)
-    2.1 [Common terms](#terms) <br />
-    2.2 [Survival function](#survival_function) <br />
-    2.3 [Hazard function](#hazard_function) <br />
+2.1 [Common terms](#terms) <br />
+2.2 [Survival function](#survival_function) <br />
+2.3 [Hazard function](#hazard_function) <br />
 3. [Dataset](#dataset) <br />
 4. [Standard Methods in Survival Analysis](#standard_methods) <br />
 * 4.1 [Kaplan-Meier estimate](#kmf) <br />
