@@ -36,7 +36,11 @@ description = "Deep Learning in Survival Analysis"
 
 ---
 
-<script src="https://gist.github.com/dariasmorodina/709038de14c8538988e6a8c04b397e9e.js"></script>
+<script src="https://gist.github.com/dariasmorodina/2f601e39a53caeef3c02d7256cc1fac1.js"></script>
+
+<img align="center" width="200" height="200"
+     style="display:block;margin:0 auto;" 
+	 src="/blog/content/research/output_13_0.pnf">
 
 
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
