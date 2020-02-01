@@ -90,15 +90,10 @@ $$S(t) = Pr(T > t)$$
 T is the random lifetime taken from the population under study and cannot be negative. With regard to the business case it is the amount of time a customer is able to pay his loan rates, he is not defaulting. The survival function S (t) outputs values between 0 and 1 and is a non-increasing function of t.
 At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(∞) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
 
-
-```python
-#@title
-from IPython.display import Image
-Image(filename='Survival_curve.png',width=800, height=350) 
-```
 ![hu logo]<img align="center" width="200" height="200" src="/blog/img/seminar/sample/hu-logo.jpg">
 
-<br>
+---
+
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
 
