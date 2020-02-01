@@ -15,8 +15,8 @@ description = "Deep Learning in Survival Analysis"
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
-1. [Motivation](#motivation)
-2. [Basics of Survival Analysis](#introduction_sa)
+1. [Motivation] (#motivation)
+2. [Basics of Survival Analysis] (#introduction_sa)
     2.1 [Common terms](#terms) <br />
     2.2 [Survival function](#survival_function) <br />
     2.3 [Hazard function](#hazard_function) <br />
@@ -36,9 +36,6 @@ description = "Deep Learning in Survival Analysis"
 
 <br>
 
-![example](/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png)
-
-<br>
 ## 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
@@ -48,6 +45,7 @@ To implement the new accounting rules banks need to build models that can evalua
 
 ---
 
+<br> 
 # 2. Introduction to Survival Analysis <a class="anchor" id="introduction_sa"></a>
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
@@ -100,15 +98,10 @@ from IPython.display import Image
 Image(filename='Survival_curve.png',width=800, height=350) 
 ```
 
-
-
-
-![png](output_13_0.png)
-
-
+![example](/blog/img/seminar/group2_SurvivalAnalysis/output_13_0.png)
 
 ---
-
+<br>
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
 
@@ -121,9 +114,6 @@ Therefore the hazard function models which periods have the highest or lowest ch
 from IPython.display import Image
 Image(filename='hazard-function.png',width=400, height=350) 
 ```
-
-
-
 
 ![png](output_16_0.png)
 
