@@ -35,8 +35,6 @@ description = "Deep Learning in Survival Analysis"
 
 ---
 
-<script src="https://gist.github.com/dariasmorodina/f3fd657aec65689b4aff3a0fa52c00d3.js"></script>
-
 # 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
