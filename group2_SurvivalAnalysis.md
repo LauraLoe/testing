@@ -91,7 +91,7 @@ $$S(t) = Pr(T > t)$$
 T is the random lifetime taken from the population under study and cannot be negative. With regard to the business case it is the amount of time a customer is able to pay his loan rates, he is not defaulting. The survival function S (t) outputs values between 0 and 1 and is a non-increasing function of t.
 At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(∞) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
 
-![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png =100x20)
+![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png)
 
 ---
 
