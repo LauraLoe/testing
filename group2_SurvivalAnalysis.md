@@ -168,15 +168,6 @@ When using Kaplan-Meier Estimate, some assumptions must be taken into account:
 
 The main disadvantage of this method is that it cannot estimate survival probability considering all covariates in the data (it is an *univariate* approach). That's why semi- and parametric models allow to analyse survival data and estimate $S(t)$ with respect to them.
 
-```python
-from lifelines import KaplanMeierFitter
-kmf = KaplanMeierFitter()
-
-T = data["total_obs_time"]
-E = data["default_time"]
-
-kmf.fit(T, event_observed = E)
-```
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 
 ![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
