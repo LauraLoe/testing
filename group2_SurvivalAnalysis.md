@@ -132,7 +132,7 @@ The graph below shows an example for censorship concept exactly for the given mo
 
 ![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
 
-Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or difаerent event occurs.
+Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or different event occurs (right-censoring).
 This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. Since the survival analysis was developed to solve this problem, all given values would be taken for further research.
 
 ![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
@@ -145,41 +145,15 @@ Further computation for survival analysis requires a specific dataset format: *t
 
 # 4. Standard Methods in Survival Analysis<a class="anchor" id="standard_methods_sa"></a>
 
+The standard ways for estimation can be classified into three main groups: **non-parametric**, **semi-parametric**, and **parametric** approaches. The choice which method to use should be guided by dataset design and research question of interest. It is feasible to use sometimes more than one approach.
 
-```python
-scaler = StandardScaler()
-```
+- **Parametric** methods rely on assumptions that distribution of the survivaltimes corresponds to specific probability distributions. This group consists of methods such as exponential, Weibull and lognormal distributions. Parameters inside these models are usually estimated using certain maximum likelihood estimations.
+- In the **non-parametric** methods there are no dependencies on the form of parameters in underlying distributions. Mostly, the non-parametric approach is used to describe survival probabilities as function of time and to give an average view of individual's population. The most popular univariate method is **Kaplan-Meier estimate** and used as first step in survival descriptive analysis (see part 4.1 below).
+- To the **semi-parametric** methods correspond the **Cox regression model** which is based both on parametric and non-parametric components (see part 4.2 below).
 
+The easiest way to estimate the survival function using aforementioned approaches is a Python package *lifelines* (available for all operating systems at https://lifelines.readthedocs.io/en/latest/).
 
-```python
-data_cox = data_cox.set_index('id')
-```
-
-
-```python
-'''
-xx = ['balance_time', 'LTV_time',
-       'interest_rate_time', 'house_price_index_time', 'gdp_time', 'unemployment_rate_time',
-       'balance_orig_time', 'FICO_orig_time',
-       'LTV_orig_time', 'interest_rate_orig_time', 'house_price_index_orig_time']
-
-data_cox[xx] = scaler.fit_transform(data_cox[xx])
-'''
-```
-
-
-
-
-    "\nxx = ['balance_time', 'LTV_time',\n       'interest_rate_time', 'house_price_index_time', 'gdp_time', 'unemployment_rate_time',\n       'balance_orig_time', 'FICO_orig_time',\n       'LTV_orig_time', 'interest_rate_orig_time', 'house_price_index_orig_time']\n\ndata_cox[xx] = scaler.fit_transform(data_cox[xx])\n"
-
-
-
-## 4.1 Kaplan Meier Estimator<a class="anchor" id="kmf"></a>
-
-
-```python
-import lifelines
-```
+## 4.1 Kaplan Meier Estimate<a class="anchor" id="kmf"></a>
 
 ### Fitting the Kaplan-Meier estimate for the survival function
 
