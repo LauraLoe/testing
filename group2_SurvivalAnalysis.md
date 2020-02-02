@@ -114,448 +114,24 @@ The main goal of survival analysis is to estimate and interpret survival and/or 
 
 # 3. Dataset <a class="anchor" id="dataset"></a>
 
-The dataset for the following survival analysis contains data of subjects that took on a mortgage. In this case the birth event is the time when the subject was first observed for the study and the death event is the default of the subject. Thw duration is the time between the birth and death event. The dataset does not contain any lost or withdrawn subjects but there exist subjects who have not defaulted yet. These subjects will be labelled ‚censored‘ in further analysis.
+We used the real-world dataset of 50.000 US mortgage borrowers which was provided by International Financial Research (www.internationalfinancialresearch.org). 
+The data is given in a "snapshot" panel format and represents a collection of US residential mortgage portfolios over 60 periods. Loan can originate before the initial start of our study and paid after it will be finished as well.
 
+When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
+In the given dataset we are able to inspect this process using the key information from following features:
+- various timestamps for loan origination, future maturity and first appearance in the survival study;
+- outside factors like gross domestic product (GDP) or unemployment rates at observation time;
+- average price index at observation moment;
+- FICO score for each individual: the higher the score, the lower the risk. A "good" credit score is considered to be in the 670-739 score range;
+- interest rates for every issued loan;
+- since our object of analysis is a mortgage data we have some insights for inquired real estate types (home for a single family or not, is this property in area with urban development etc.) which also are playing an important role for loan amount.
 
-```python
-import pandas as pd
-from pandas import DataFrame
+While interpreting our data as for survival analysis the *birth event* is the time when the subject was first observed for the study and the *death event* is the default of the subject. The duration is the time between the birth and death event. The dataset does not contain any lost or withdrawn subjects but there exist subjects who have not defaulted yet. These subjects will be labelled *censored* in further analysis.
 
-import numpy as np
-import sklearn
+--- 
 
-import matplotlib.pyplot as plt
-%matplotlib inline
-import matplotlib.dates as mdates
-plt.rcParams.update({'figure.figsize':(16,7), 'figure.dpi':100})
-plt.style.use('seaborn-white')
+### Data preprocessing
 
-import seaborn as sns
-
-from sklearn.preprocessing import MinMaxScaler, StandardScaler
-```
-
-### Load and explore the given dataset
-
-
-```python
-data = pd.read_csv('mortgage.csv', sep = ",")
-```
-
-
-```python
-data.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>time</th>
-      <th>orig_time</th>
-      <th>first_time</th>
-      <th>mat_time</th>
-      <th>balance_time</th>
-      <th>LTV_time</th>
-      <th>interest_rate_time</th>
-      <th>hpi_time</th>
-      <th>gdp_time</th>
-      <th>...</th>
-      <th>REtype_SF_orig_time</th>
-      <th>investor_orig_time</th>
-      <th>balance_orig_time</th>
-      <th>FICO_orig_time</th>
-      <th>LTV_orig_time</th>
-      <th>Interest_Rate_orig_time</th>
-      <th>hpi_orig_time</th>
-      <th>default_time</th>
-      <th>payoff_time</th>
-      <th>status_time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>25</td>
-      <td>-7</td>
-      <td>25</td>
-      <td>113</td>
-      <td>41303.42</td>
-      <td>24.498336</td>
-      <td>9.2</td>
-      <td>226.29</td>
-      <td>2.899137</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>45000.0</td>
-      <td>715</td>
-      <td>69.4</td>
-      <td>9.2</td>
-      <td>87.03</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1</td>
-      <td>26</td>
-      <td>-7</td>
-      <td>25</td>
-      <td>113</td>
-      <td>41061.95</td>
-      <td>24.483867</td>
-      <td>9.2</td>
-      <td>225.10</td>
-      <td>2.151365</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>45000.0</td>
-      <td>715</td>
-      <td>69.4</td>
-      <td>9.2</td>
-      <td>87.03</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1</td>
-      <td>27</td>
-      <td>-7</td>
-      <td>25</td>
-      <td>113</td>
-      <td>40804.42</td>
-      <td>24.626795</td>
-      <td>9.2</td>
-      <td>222.39</td>
-      <td>2.361722</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>45000.0</td>
-      <td>715</td>
-      <td>69.4</td>
-      <td>9.2</td>
-      <td>87.03</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1</td>
-      <td>28</td>
-      <td>-7</td>
-      <td>25</td>
-      <td>113</td>
-      <td>40483.89</td>
-      <td>24.735883</td>
-      <td>9.2</td>
-      <td>219.67</td>
-      <td>1.229172</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>45000.0</td>
-      <td>715</td>
-      <td>69.4</td>
-      <td>9.2</td>
-      <td>87.03</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1</td>
-      <td>29</td>
-      <td>-7</td>
-      <td>25</td>
-      <td>113</td>
-      <td>40367.06</td>
-      <td>24.925476</td>
-      <td>9.2</td>
-      <td>217.37</td>
-      <td>1.692969</td>
-      <td>...</td>
-      <td>1</td>
-      <td>0</td>
-      <td>45000.0</td>
-      <td>715</td>
-      <td>69.4</td>
-      <td>9.2</td>
-      <td>87.03</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 23 columns</p>
-</div>
-
-
-
-
-```python
-print("Maximal lifetime (in days) in dataset: ", data['time'].max())
-```
-
-    Maximal lifetime (in days) in dataset:  60
-    
-
-
-```python
-data.shape
-```
-
-
-
-
-    (622489, 23)
-
-
-
-### Counting the risks
-
-
-```python
-data['default_time'].value_counts()
-```
-
-
-
-
-    0    607331
-    1     15158
-    Name: default_time, dtype: int64
-
-
-
-
-```python
-data['payoff_time'].value_counts()
-```
-
-
-
-
-    0    595900
-    1     26589
-    Name: payoff_time, dtype: int64
-
-
-
-
-```python
-data['status_time'].value_counts()
-```
-
-
-
-
-    0    580742
-    2     26589
-    1     15158
-    Name: status_time, dtype: int64
-
-
-
-### Checking the missing values in dataset and replacing them with means
-
-
-```python
-# Check for missing values
-data.isnull().sum()
-```
-
-
-
-
-    id                           0
-    time                         0
-    orig_time                    0
-    first_time                   0
-    mat_time                     0
-    balance_time                 0
-    LTV_time                   270
-    interest_rate_time           0
-    hpi_time                     0
-    gdp_time                     0
-    uer_time                     0
-    REtype_CO_orig_time          0
-    REtype_PU_orig_time          0
-    REtype_SF_orig_time          0
-    investor_orig_time           0
-    balance_orig_time            0
-    FICO_orig_time               0
-    LTV_orig_time                0
-    Interest_Rate_orig_time      0
-    hpi_orig_time                0
-    default_time                 0
-    payoff_time                  0
-    status_time                  0
-    dtype: int64
-
-
-
-### Rename columns for more convenient usage
-
-
-```python
-data = data.rename(columns={"orig_time": "origination_time", "mat_time": "maturity_time",
-                            "hpi_time" : "house_price_index_time",  "hpi_orig_time" : "house_price_index_orig_time", 
-                            "uer_time" : "unemployment_rate_time", 
-                            "REtype_CO_orig_time" : "real_estate_condominium", 
-                            "REtype_PU_orig_time" : "real_estate_planned_urban_dev", 
-                            "REtype_SF_orig_time" : "real_estate_single_family_home", "Interest_Rate_orig_time" : "interest_rate_orig_time"})
-```
-
----
-
-- ## Data preprocessing
-
-### Max time for each borrower
-
-
-```python
-time_max = data.groupby(['id']).agg({'time' : 'max'}).reset_index()
-time_max.rename(columns = {'time' : 'time_max'}, inplace = True)
-```
-
-
-```python
-data = pd.merge(data,time_max, on ='id')
-```
-
-
-```python
-time_max[time_max.columns[1:]].mean()
-```
-
-
-
-
-    time_max    36.17074
-    dtype: float64
-
-
-
-
-```python
-time_max.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>id</th>
-      <th>time_max</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>48</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>2</td>
-      <td>26</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>3</td>
-      <td>29</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>4</td>
-      <td>60</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>5</td>
-      <td>27</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-### Duration column
-
-
-```python
-data['total_obs_time'] = data.apply(lambda r: int(r['time_max'] - r['first_time']+1), axis = 1)
-```
-
-### Missing values imputation
-
-
-```python
-data['LTV_time'].fillna((data['LTV_time'].mean()),inplace=True)
-```
-
-### Backup Copy
-
-
-```python
-data_all = data.copy()
-```
-
-
-```python
-df = data.copy()
-```
-
-
-```python
-df = df[df.id != df.id.shift(-1)]
-```
 
 ### Default event distribution graph
 
@@ -666,33 +242,6 @@ plt.show()
 
 
 
-
-    "\ncat_features = ['investor_orig_time', 'real_estate_single_family_home', 'real_estate_planned_urban_dev']\n\nfig, axs = plt.subplots(ncols=3, nrows=1, figsize=(20, 20))\nplt.subplots_adjust(right=1.5, top=1.25)\n\nfor i, feature in enumerate(cat_features, 1):    \n    plt.subplot(2, 3, i)\n    sns.countplot(x=feature, hue='default_time', data=df)\n    \n    plt.xlabel('{}'.format(feature), size=20, labelpad=15)\n    plt.ylabel('Borrower Count', size=20, labelpad=15)    \n    plt.tick_params(axis='x', labelsize=20)\n    plt.tick_params(axis='y', labelsize=20)\n    \n    plt.legend(['Not Defaulted', 'Defaulted'], loc='upper center', prop={'size': 18})\n    plt.title('Count of Defaults in {} Feature'.format(feature), size=20, y=1.05)\n\nplt.show()\n"
-
-
-
-### Dropping out some columns
-
-
-```python
-data_all = data_all.drop(['status_time', 'first_time', 'time_max', 'payoff_time'], axis = 1)
-
-data_one = df.copy()
-data_one = data_one.drop(['time', 'status_time', 'first_time', 'time_max', 'payoff_time'], axis = 1)
-```
-
-
-```python
-print(data_all.shape, data_one.shape)
-```
-
-    (622489, 21) (50000, 20)
-    
-
-
-```python
-data_cox = data_one.copy()
-```
 
 ### Additional: Censorhip plot
 
@@ -3526,7 +3075,7 @@ DeepHit is a deep neural network that learns the distribution of survival times 
 
 The model basically contains two parts, a shared sub-network and a family of cause-specific sub-networks. Due to this architecture a great advantage of DeepHit is that it easily can be used for survival datasets with one single risk but also with multiple competing risks.
 The dataset used so far describes one single risk, the risk of default. Customers that did not experience the event of interest are censored. The reasons for censorship can either be that the event of interest was not experienced or another event happened that also led to the end of observation, but is not the event of interest for survival analysis. 
-The original dataset has information about a second risk, the early repayment, also called payoff. For prior use the dataset was preprocessed in a way that customers with an early repayment were also labelled „censored“, because the only event of interest was the event of default. If the second risk also becomes the focus of attention in terms of survival analysis a second label for payoff (payoff = 2) can be introduced in the event column of the dataset.
+The original dataset has information about a second risk, the early repayment, also called payoff. For prior use the dataset was preprocessed in a way that customers with an early repayment were also labelled „censored“, because the only event of interest was the event of default. If the second risk also becomes the focus of attention in terms of survival analysis a second label for payoff (payoff = 2) can be introduced in the event column of the dataset. Therefore a competing risk is an event whose occurrence precludes the occurrence of the primary event of interest. [b]
 
 
 ```python
@@ -3818,7 +3367,6 @@ Possible candidates for parameter tuning can be:
 The chosen parameters are forwarded to the function get_valid_performance along with the event labels, durations and covariates (summarized in DATA) as well as the masks for the loss calculations (summarized in MASK). This function takes the forwarded parameters to build a DeepHit model corresponding to the number of events of interest as well as the number of layers and nodes for the sub-networks. The dataset is then spilt into training, validation and test sets in order to start training the model on the training set using the chosen parameters. The training is done with mini batches of the training set over 50.000 iterations. Every 1000 iteration a prediction is done on the validation set and the best model is saved to the specified file path. The best result is returned if there is no improvement for the next 6000 iterations (early stopping).
 
 
-
 ```python
 # Hyperparameter tuning
 
@@ -3879,8 +3427,6 @@ $$ \hat{F}_{k^{*}}(s^{*}|x^{*}) = \sum_{m=0}^{s^{*}}y^{*}_{k,m}$$
 The cause-specific ranking loss function adapts the idea of concordance. A customer that experienced the event k on a specific time t should have a higher probability than a customer that will experience the event sometime after this specific time t. The ranking loss function therefore compares pairs of customers that experienced the same event of interest and penalizes an incorrect ordering of pairs.
 
 After the training process the saved optimised hyper-parameters as well as the corresponding trained model can be used for the final prediction on the test dataset.
-
-
 
 ```python
 # Load the saved optimised hyperparameters
