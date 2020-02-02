@@ -148,296 +148,38 @@ Further computation for survival analysis requires a specific dataset format: *t
 The standard ways for estimation can be classified into three main groups: **non-parametric**, **semi-parametric**, and **parametric** approaches. The choice which method to use should be guided by dataset design and research question of interest. It is feasible to use sometimes more than one approach.
 
 - **Parametric** methods rely on assumptions that distribution of the survivaltimes corresponds to specific probability distributions. This group consists of methods such as exponential, Weibull and lognormal distributions. Parameters inside these models are usually estimated using certain maximum likelihood estimations.
-- In the **non-parametric** methods there are no dependencies on the form of parameters in underlying distributions. Mostly, the non-parametric approach is used to describe survival probabilities as function of time and to give an average view of individual's population. The most popular univariate method is **Kaplan-Meier estimate** and used as first step in survival descriptive analysis (see part 4.1 below).
-- To the **semi-parametric** methods correspond the **Cox regression model** which is based both on parametric and non-parametric components (see part 4.2 below).
+- In the **non-parametric** methods there are no dependencies on the form of parameters in underlying distributions. Mostly, the non-parametric approach is used to describe survival probabilities as function of time and to give an average view of individual's population. The most popular univariate method is **Kaplan-Meier estimate** and used as first step in survival descriptive analysis (section 4.1).
+- To the **semi-parametric** methods correspond the **Cox regression model** which is based both on parametric and non-parametric components (section 4.2).
 
 The easiest way to estimate the survival function using aforementioned approaches is a Python package *lifelines* (available for all operating systems at https://lifelines.readthedocs.io/en/latest/).
 
 ## 4.1 Kaplan Meier Estimate<a class="anchor" id="kmf"></a>
 
-### Fitting the Kaplan-Meier estimate for the survival function
+The key idea of Kaplan-Meier estimator is to break the estimation of survival function $S(t)$ into a smaller steps depending on observed event times. For each interval the probability of surviving until the end of this interval is calculated, given the following formula:
 
+$$ \hat{S(t)} = \prod_{i: t_i <= t}{\frac{n_i - d_i}{n_i}} ,$$
+where $n_i$ is a number of individuals who are at risk at time point $t_i$ and $d_i$ is a number of subjects with experienced event at time $t_i$.
+
+When using Kaplan-Meier Estimate, some assumptions must be taken into account:
+- All observations - both censored and with event of interest - are used in estimation
+- There is no cohort effect on survival, so subjects have the same survival probability regardless of their nature and time of appearance in study
+- Individuals who are censored have the same survival probabilities as those who continue to be examined
+- Survival probability is equal for all subjects.
+
+The main disadvantage of this method is that it cannot estimate survival probability considering all covariates in the data (it is an *univariate* approach). That's why semi- and parametric models allow to analyse survival data and estimate $S(t)$ with respect to them.
 
 ```python
 from lifelines import KaplanMeierFitter
 kmf = KaplanMeierFitter()
+
+T = data["total_obs_time"]
+E = data["default_time"]
+
+kmf.fit(T, event_observed = E)
 ```
+The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 
-
-```python
-T = data_cox["total_obs_time"]
-E = data_cox["default_time"]
-
-kmf.fit(T, event_observed=E)
-```
-
-
-
-
-    <lifelines.KaplanMeierFitter:"KM_estimate", fitted with 50000 total observations, 34846 right-censored observations>
-
-
-
-### Plot for KMF
-
-
-```python
-kmf.plot()
-
-plt.title("The Kaplan-Meier Estimate", fontsize = 15)
-plt.ylabel("Probability a Borrower is not defaulted", fontsize = 15)
-
-plt.show()
-```
-
-
-![png](output_79_0.png)
-
-
-### The estimated median time to event
-
-Return the unique time point, t, such that S(t) = 0.5. This is the “half-life” of the population, and a robust summary statistic for the population, if it exists.
-
-
-```python
-kmf.median_survival_time_
-```
-
-
-
-
-    26.0
-
-
-
-### A summary of the life table
-
-
-```python
-kmf.event_table[:10]
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>removed</th>
-      <th>observed</th>
-      <th>censored</th>
-      <th>entrance</th>
-      <th>at_risk</th>
-    </tr>
-    <tr>
-      <th>event_at</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0.0</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>50000</td>
-      <td>50000</td>
-    </tr>
-    <tr>
-      <th>1.0</th>
-      <td>3773</td>
-      <td>623</td>
-      <td>3150</td>
-      <td>0</td>
-      <td>50000</td>
-    </tr>
-    <tr>
-      <th>2.0</th>
-      <td>3992</td>
-      <td>892</td>
-      <td>3100</td>
-      <td>0</td>
-      <td>46227</td>
-    </tr>
-    <tr>
-      <th>3.0</th>
-      <td>3693</td>
-      <td>999</td>
-      <td>2694</td>
-      <td>0</td>
-      <td>42235</td>
-    </tr>
-    <tr>
-      <th>4.0</th>
-      <td>3557</td>
-      <td>965</td>
-      <td>2592</td>
-      <td>0</td>
-      <td>38542</td>
-    </tr>
-    <tr>
-      <th>5.0</th>
-      <td>2971</td>
-      <td>996</td>
-      <td>1975</td>
-      <td>0</td>
-      <td>34985</td>
-    </tr>
-    <tr>
-      <th>6.0</th>
-      <td>2768</td>
-      <td>953</td>
-      <td>1815</td>
-      <td>0</td>
-      <td>32014</td>
-    </tr>
-    <tr>
-      <th>7.0</th>
-      <td>3029</td>
-      <td>936</td>
-      <td>2093</td>
-      <td>0</td>
-      <td>29246</td>
-    </tr>
-    <tr>
-      <th>8.0</th>
-      <td>2583</td>
-      <td>985</td>
-      <td>1598</td>
-      <td>0</td>
-      <td>26217</td>
-    </tr>
-    <tr>
-      <th>9.0</th>
-      <td>3177</td>
-      <td>894</td>
-      <td>2283</td>
-      <td>0</td>
-      <td>23634</td>
-    </tr>
-    <tr>
-      <th>10.0</th>
-      <td>1444</td>
-      <td>766</td>
-      <td>678</td>
-      <td>0</td>
-      <td>20457</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-### Estimated survival function
-
-
-```python
-kmf_surv = kmf.survival_function_
-```
-
-
-```python
-kmf_surv[:10]
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>KM_estimate</th>
-    </tr>
-    <tr>
-      <th>timeline</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0.0</th>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>1.0</th>
-      <td>0.987540</td>
-    </tr>
-    <tr>
-      <th>2.0</th>
-      <td>0.968484</td>
-    </tr>
-    <tr>
-      <th>3.0</th>
-      <td>0.945576</td>
-    </tr>
-    <tr>
-      <th>4.0</th>
-      <td>0.921901</td>
-    </tr>
-    <tr>
-      <th>5.0</th>
-      <td>0.895656</td>
-    </tr>
-    <tr>
-      <th>6.0</th>
-      <td>0.868993</td>
-    </tr>
-    <tr>
-      <th>7.0</th>
-      <td>0.841182</td>
-    </tr>
-    <tr>
-      <th>8.0</th>
-      <td>0.809578</td>
-    </tr>
-    <tr>
-      <th>9.0</th>
-      <td>0.778954</td>
-    </tr>
-    <tr>
-      <th>10.0</th>
-      <td>0.749787</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
+![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
