@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-01' 
+date = '2020-02-06' 
 tags = [ "Deep Learning", "Neural Networks",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
@@ -1232,38 +1232,12 @@ The second step is to check if these possible pairs are concordant. The first th
 The dataset used for the blogpost features the case of right-censoring but the reason for censoring is that these customers are still in the phase of repaying and their loans has not matured yet. Therefore the time of censoring is equal to the last observation time. Due to this the case that some customer default after a customer was censored is not possible. The example of the concordance index in case of right-censoring is shown for the sake of completeness since other survival datasets can have this case. A medical dataset for example can have data about patients with a heart disease. If a patient dies due to different reasons than a heart disease this patient would be censored. This can happen during the observation time and other patients can die due to a heart disease at a later time.
 
 
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
-
 ---
 
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 
-```python
-
-```
-
-
-```python
-
-```
-
-
-```python
-
-```
+---
 
 # 8. References<a class="anchor" id="references"></a>
 
@@ -1272,8 +1246,6 @@ The dataset used for the blogpost features the case of right-censoring but the r
 [2] Ernst & Young (December 2014): Impairment of financial instruments under IFRS 9 - https://www.ey.com/Publication/vwLUAssets/Applying_IFRS:_Impairment_of_financial_instruments_under_IFRS_9/$FILE/Apply-FI-Dec2014.pdf
 
 [3] Bank for International Settlements (December 2017): IFRS 9 and expected loss provisioning - Executive Summary - https://www.bis.org/fsi/fsisummaries/ifrs9.pdf
-
-
 
 [4] Liberato Camilleri (March 2019): History of survival snalysis - https://timesofmalta.com/articles/view/history-of-survival-analysis.705424
 
