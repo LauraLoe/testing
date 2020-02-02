@@ -137,19 +137,6 @@ While interpreting our data as for survival analysis the *birth event* is the ti
 
 
 ```python
-df_map = df.copy()
-
-mapping = {0: 'Censored', 1: 'Event Occured'}
-df_map = df_map.replace({'default_time': mapping})
-```
-
-
-```python
-def_risk  = df_map['default_time'].value_counts()
-```
-
-
-```python
 cens = df_map['default_time'].value_counts()[0]
 ev = df_map['default_time'].value_counts()[1]
 cens_per = cens / df_map.shape[0] * 100
@@ -170,75 +157,7 @@ plt.show()
 ```
 
 
-![png](output_52_0.png)
-
-
-
-```python
-df['default_time'].value_counts()
-```
-
-
-
-
-    0    34846
-    1    15154
-    Name: default_time, dtype: int64
-
-
-
-
-```python
-df['payoff_time'].value_counts()
-```
-
-
-
-
-    1    26589
-    0    23411
-    Name: payoff_time, dtype: int64
-
-
-
-
-```python
-df['status_time'].value_counts()
-```
-
-
-
-
-    2    26589
-    1    15154
-    0     8257
-    Name: status_time, dtype: int64
-
-
-
-
-```python
-'''
-cat_features = ['investor_orig_time', 'real_estate_single_family_home', 'real_estate_planned_urban_dev']
-
-fig, axs = plt.subplots(ncols=3, nrows=1, figsize=(20, 20))
-plt.subplots_adjust(right=1.5, top=1.25)
-
-for i, feature in enumerate(cat_features, 1):    
-    plt.subplot(2, 3, i)
-    sns.countplot(x=feature, hue='default_time', data=df)
-    
-    plt.xlabel('{}'.format(feature), size=20, labelpad=15)
-    plt.ylabel('Borrower Count', size=20, labelpad=15)    
-    plt.tick_params(axis='x', labelsize=20)
-    plt.tick_params(axis='y', labelsize=20)
-    
-    plt.legend(['Not Defaulted', 'Defaulted'], loc='upper center', prop={'size': 18})
-    plt.title('Count of Defaults in {} Feature'.format(feature), size=20, y=1.05)
-
-plt.show()
-'''
-```
+![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
 
 
 
@@ -246,99 +165,7 @@ plt.show()
 ### Additional: Censorhip plot
 
 
-```python
-current_time = 12
-```
-
-
-```python
-actual_lifetimes = data_one.total_obs_time[:30]
-actual_lifetimes.index = np.arange(1, len(actual_lifetimes)+1)
-```
-
-
-```python
-actual_lifetimes.head()
-```
-
-
-
-
-    1    24
-    2     2
-    3     5
-    4    36
-    5     3
-    Name: total_obs_time, dtype: int64
-
-
-
-
-```python
-observed_lifetimes = np.minimum(actual_lifetimes, current_time)
-observed_lifetimes.head()
-```
-
-
-
-
-    1    12
-    2     2
-    3     5
-    4    12
-    5     3
-    Name: total_obs_time, dtype: int64
-
-
-
-
-```python
-death_observed = actual_lifetimes < current_time
-death_observed.head()
-```
-
-
-
-
-    1    False
-    2     True
-    3     True
-    4    False
-    5     True
-    Name: total_obs_time, dtype: bool
-
-
-
-
-```python
-from lifelines.plotting import plot_lifetimes
-
-ax = plot_lifetimes(actual_lifetimes, event_observed=death_observed)
-ax.set_xlim(0, 35)
-ax.vlines(10, 0, len(actual_lifetimes), lw=2, linestyles='--')
-ax.set_ylabel('Borrowers', fontsize = 15)
-ax.set_xlabel("Time (Months)", fontsize = 15)
-ax.set_title("Default events for our individuals, at $t=10$", fontsize = 15)
-```
-
-    C:\Users\frusi\Anaconda3\envs\sis\lib\site-packages\pandas\core\series.py:1146: FutureWarning: 
-    Passing list-likes to .loc or [] with any missing label will raise
-    KeyError in the future, you can use .reindex() as an alternative.
-    
-    See the documentation here:
-    https://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#deprecate-loc-reindex-listlike
-      return self.loc[key]
-    
-
-
-
-
-    Text(0.5, 1.0, 'Default events for our individuals, at $t=10$')
-
-
-
-
-![png](output_67_2.png)
+![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
 
 
 ---
