@@ -128,18 +128,17 @@ In the given dataset we are able to inspect this process using the key informati
 
 While interpreting our data as for survival analysis the *birth event* is the time when the subject was first observed for the study and the *death event* is the default of the subject. The duration is the time between the birth and death event. The dataset does not contain any lost or withdrawn subjects but there exist subjects who have not defaulted yet. These subjects will be labelled *censored* in further analysis.
 
---- 
+The graph below shows an example for censorship concept exactly for the given mortgage dataset at specific timepoint (in this case 13 months).  
 
-### Data preprocessing
+![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
 
-
-### Default event distribution graph
+Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or difаerent event occurs.
+This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. 
 
 ![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
 
-### Additional: Censorhip plot
+#### Data preprocessing
 
-![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
 
 ---
 
