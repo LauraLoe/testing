@@ -6,7 +6,7 @@ categories = ["course projects"]
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
-description = "Deep Learning in Survival Analysis"
+description = "Introduction into Survival Analysis topic and implementation of Neural Networks in this concept"
 +++
 
 
@@ -133,7 +133,7 @@ The graph below shows an example for censorship concept exactly for the given mo
 ![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
 
 Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or difаerent event occurs.
-This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. 
+This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. Since the survival analysis was developed to solve this problem, all given values would be taken for further research.
 
 ![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
 
