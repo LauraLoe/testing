@@ -6,7 +6,7 @@ categories = ["course projects"]
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
-description = "Introduction into Survival Analysis topic and implementation of Neural Networks in this concept"
+description = "Introduction to Survival Analysis and following research with Neural Networks"
 +++
 
 
@@ -137,8 +137,9 @@ This leads to one of the challenges in survival analysis: how to handle properly
 
 ![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
 
-#### Data preprocessing
+Further computation for survival analysis requires a specific dataset format: *total_obs_time* column represents calculated lifetime duration for each borrower (for censored objects it would be a study time, for defaulted - time taken before event happening), *default_time* corresponds to event indicator (1 for experienced and 0 in case of censoring) and *X* - p-dimensional feature vector.
 
+![data_snapshot](/blog/img/seminar/group2_SurvivalAnalysis/subset_data.png)
 
 ---
 
