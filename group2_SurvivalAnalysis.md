@@ -91,7 +91,7 @@ $$S(t) = Pr(T > t)$$
 T is the random lifetime taken from the population under study and cannot be negative. With regard to the business case it is the amount of time a customer is able to pay his loan rates, he is not defaulting. The survival function S (t) outputs values between 0 and 1 and is a non-increasing function of t.
 At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(∞) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
 
-![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png)
+![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png =100x20)
 
 ---
 
@@ -119,11 +119,11 @@ The data is given in a "snapshot" panel format and represents a collection of US
 
 When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
 In the given dataset we are able to inspect this process using the key information from following features:
-- various timestamps for loan origination, future maturity and first appearance in the survival study;
-- outside factors like gross domestic product (GDP) or unemployment rates at observation time;
-- average price index at observation moment;
-- FICO score for each individual: the higher the score, the lower the risk. A "good" credit score is considered to be in the 670-739 score range;
-- interest rates for every issued loan;
+- various timestamps for loan origination, future maturity and first appearance in the survival study
+- outside factors like gross domestic product (GDP) or unemployment rates at observation time
+- average price index at observation moment
+- FICO score for each individual: the higher the score, the lower the risk (a "good" credit score is considered to be in the 670-739 score range)
+- interest rates for every issued loan
 - since our object of analysis is a mortgage data we have some insights for inquired real estate types (home for a single family or not, is this property in area with urban development etc.) which also are playing an important role for loan amount.
 
 While interpreting our data as for survival analysis the *birth event* is the time when the subject was first observed for the study and the *death event* is the default of the subject. The duration is the time between the birth and death event. The dataset does not contain any lost or withdrawn subjects but there exist subjects who have not defaulted yet. These subjects will be labelled *censored* in further analysis.
