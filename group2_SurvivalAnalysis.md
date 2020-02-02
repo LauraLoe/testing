@@ -135,38 +135,11 @@ While interpreting our data as for survival analysis the *birth event* is the ti
 
 ### Default event distribution graph
 
-
-```python
-cens = df_map['default_time'].value_counts()[0]
-ev = df_map['default_time'].value_counts()[1]
-cens_per = cens / df_map.shape[0] * 100
-ev_per = ev / df_map.shape[0] * 100
-
-plt.figure(figsize=(10, 8))
-sns.countplot(df_map['default_time'])
-
-plt.xlabel('', size=15, labelpad=15)
-plt.ylabel('Frequency', size=15, labelpad=15)
-plt.xticks((1, 0), ['Censored ({0:.2f}%)'.format(cens_per), 'Event Occured ({0:.2f}%)'.format(ev_per)])
-plt.tick_params(axis='x', labelsize=13)
-plt.tick_params(axis='y', labelsize=13)
-
-plt.title('Event Distribution', size=15, y=1.05)
-
-plt.show()
-```
-
-
 ![event_distrib_plot](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
-
-
-
 
 ### Additional: Censorhip plot
 
-
 ![censorship_plot](/blog/img/seminar/group2_SurvivalAnalysis/censorship.png)
-
 
 ---
 
