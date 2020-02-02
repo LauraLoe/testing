@@ -200,112 +200,48 @@ Consequently, there are derived another important properties of Cox regression m
 
 ---
 
-## 4.3 Baseline models which can handle non-proportional variables<a class="anchor" id="time_cox"></a>
+## 4.3 Baseline models which differ from proportional hazard model<a class="anchor" id="time_cox"></a>
 
 However, for the given dataset this proportinality property does not hold due to violation from some covariates. There exist some additional methods to overcome this violation. 
 - The first is binning these variables into smaller intervals and stratifying on them. We keep in model the covariates which do not obey proportional assumption. Te problem that can arise in this case - information loss (since different values are now binned together)
-- Cox regression for time-varying datasets
+- Cox regression with time-continuous variables
 - Random survival forests
-- Neural networks
+- Extension with neural networks (section 5)
 
 #### Time-Varying Cox Regression Model
 
+Earlier, we assumed that predictors (covariates) are constant during the follow-up's course. However, time-varying covariates can be included in survival models. 
+The changes over time can be incorporated by using a modification of the Cox model above. 
 
+This extents the person-time of individuals into intervals with different length. The key assumption of including time-varying covariates is that it's effect does not depend on time.
+Time-variant features should be used when it is hypothesized that the predicted hazard depends significantly on later values of the covariate than the value of the covariate at baseline. 
 
----
+Before running Cox regression model including new covariates it is necessary to pre-process the dataset into so-called "long" format (where each duration is represented in *start* and *stop* view).
+
+![data_time_format](/blog/img/seminar/group2_SurvivalAnalysis/subset_data_time.png)
+
+Fitting the Cox model on modified time-varying data involves using gradient descent (as well as for standard proportional hazard model). Special built-in functions in *lifelines* package take extra effort to help with convergence of the data (high collinearity between some variables).
 
 #### Random Survival Forests
 
+Another feasible machine learning approach which can be used to avoid proportional constraint of Cox proportional hazard model is is the random survival forest (RSF). 
+The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. Сonstructing ensembles from base learners, such as trees, can substantially improve prediction performance.
 
-```python
-from sklearn.preprocessing import OrdinalEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
+Basically, RSF computes a random forest using the log-rank test as the splitting criterion. It computes the cumulative hazards of the leaf nodes and averages them over the ensemble. 
 
-from sksurv.preprocessing import OneHotEncoder
-from sksurv.ensemble import RandomSurvivalForest
-```
-
-
-```python
-rstate = 124
-```
-
-
-```python
-def get_x_y_survival(dataset, col_event, col_time, val_outcome):
-    if col_event is None or col_time is None:
-        y = None
-        x_frame = dataset
-    else:
-        y = np.empty(dtype=[(col_event, np.bool), (col_time, np.float64)],
-                        shape=dataset.shape[0])
-        y[col_event] = (dataset[col_event] == val_outcome).values
-        y[col_time] = dataset[col_time].values
-
-        x_frame = dataset.drop([col_event, col_time], axis=1)
-
-    return x_frame, y
-```
-
-
-```python
-X_rf, y_rf = get_x_y_survival(data_cox, 'default_time', 'total_obs_time', 1)
-```
-
-
-```python
-X_rf_train, X_rf_test, y_rf_train, y_rf_test = train_test_split(X_rf, y_rf, test_size=0.25, random_state=rstate)
-```
-
+Further technical implementation is based on *scikit-survival* package, which was built on top of *scikit-learn*: that allows implementation of survival analysis while utilizing the power of scikit-learn.
 
 ```python
 rsf = RandomSurvivalForest(n_estimators=50,
-                           min_samples_split=10,
-                           min_samples_leaf=15,
+                           min_samples_split=7,
+                           min_samples_leaf=10,
                            max_features="sqrt",
                            n_jobs=-1,
                            random_state=rstate,
-                          verbose=1)
+                           verbose=1)
+                           
+rsf.fit(X_rf_train, y_rf_train)                           
 ```
-
-
-```python
-rsf.fit(X_rf_train, y_rf_train)
-```
-
-    [Parallel(n_jobs=-1)]: Using backend ThreadingBackend with 4 concurrent workers.
-    [Parallel(n_jobs=-1)]: Done  42 tasks      | elapsed:  6.6min
-    [Parallel(n_jobs=-1)]: Done  50 out of  50 | elapsed:  7.5min finished
-    
-
-
-
-
-    RandomSurvivalForest(bootstrap=True, max_depth=None, max_features='sqrt',
-                         max_leaf_nodes=None, min_samples_leaf=15,
-                         min_samples_split=10, min_weight_fraction_leaf=0.0,
-                         n_estimators=50, n_jobs=-1, oob_score=False,
-                         random_state=124, verbose=1, warm_start=False)
-
-
-
-
-```python
-rsf.score(X_rf_test, y_rf_test)
-```
-
-    [Parallel(n_jobs=4)]: Using backend ThreadingBackend with 4 concurrent workers.
-    [Parallel(n_jobs=4)]: Done  42 tasks      | elapsed:    0.1s
-    [Parallel(n_jobs=4)]: Done  50 out of  50 | elapsed:    0.1s finished
-    
-
-
-
-
-    0.7970134777974758
-
-
 
 ---
 
