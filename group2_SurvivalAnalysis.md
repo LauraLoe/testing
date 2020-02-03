@@ -245,6 +245,8 @@ We can define particular groups of methods regading deep learning in survival an
 - As an alternative approach, fully parametric survival models like **RNN-SURV** (Giunchiglia1 2018) are able to handle time-invariance in comparison to above mentioned models [17].
 - On the other hand, a new deep learning neural network, **DeepHit**, was developed to process the survival data with competing risks (section 5.2).
 
+--- 
+
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
 
