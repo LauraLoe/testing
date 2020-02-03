@@ -56,6 +56,9 @@ The methods of survival analysis can also be applied in the field of engineering
 
 ---
 
+![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
+
+
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
 Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
 The subjects whose data were collected for survival analysis usually do not have the same time of first observation. A subject can enter the study at any time. Using durations ensure a necessary relativeness. [6] Referring to the business case the birth event is the initial recognition of a loan, the death event, consequently the event of interest, describes the time a customer defaulted and the duration is the time between the initial recognition and the event of default.
@@ -95,8 +98,6 @@ At the start of the study (t=0), no subject has experienced the event yet. There
 ![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png)
 
 ---
-
-<iframe src="https://giphy.com/embed/SWzYf20mp6mhy3N1Gy" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tvland-tv-land-king-of-queens-kingofqueens-SWzYf20mp6mhy3N1Gy">via GIPHY</a></p>
 
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
