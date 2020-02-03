@@ -1,7 +1,7 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-01' 
-tags = [ "Deep Learning", "Neural Networks",]
+date = '2020-02-06' 
+tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis"]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
@@ -13,6 +13,8 @@ description = "Introduction to Survival Analysis and following research with Neu
 # Deep Learning for Survival Analysis
 ---
 #### Authors: Laura Löschmann, Daria Smorodina
+
+<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/SWzYf20mp6mhy3N1Gy" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/tvland-tv-land-king-of-queens-kingofqueens-SWzYf20mp6mhy3N1Gy">via GIPHY</a></p>
 
 ## Table of content
 1. [Motivation](#motivation) <br/>
