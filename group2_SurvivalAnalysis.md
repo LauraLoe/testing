@@ -156,7 +156,7 @@ The most convenient way to estimate the survival function using aforementioned a
 The key idea of Kaplan-Meier estimator is to break the estimation of survival function $S(t)$ into a smaller steps depending on observed event times. For each interval the probability of surviving until the end of this interval is calculated, given the following formula:
 
 $$ \hat{S(t)} = \prod_{i: t_i <= t}{\frac{n_i - d_i}{n_i}} ,$$
-where $n_i$ is a number of individuals who are at risk at time point $t_i$ and $d_i$ is a number of subjects with experienced event at time $t_i$.
+where $n_i$ is a number of individuals who are at risk at time point $t_i$ and $d_i$ is a number of subjects with experienced event at time $t_i$. [8]
 
 When using Kaplan-Meier Estimate, some assumptions must be taken into account:
 - All observations - both censored and with event of interest - are used in estimation
@@ -182,7 +182,7 @@ $$ \lambda(t|x) = \lambda_{0}(t) exp(\beta_{1}x_1 + … + \beta_{n}x_n)$$
 - This method is considered as semi-parametric: it contains parametric set of covariates and non-parametric component $\lambda_{0}(t)$ which is called *baseline hazard*, the value of hazard when all covariates are equal to 0. 
 - The second component are *partial hazards* or *hazard ratios* and they define the hazard effect of observed covariates on baseline hazard $\lambda_{0}(t)$
 - These components are estimated by partial likelihood and are time-invariant
-- In general, Cox model makes an estimation of log-risk function $\lambda(t|x)$ as linear combination of it's static covariates and baseline hazard. 
+- In general, Cox model makes an estimation of log-risk function $\lambda(t|x)$ as linear combination of it's static covariates and baseline hazard. [8]
 
 The sign of partial hazards plays important role in general hazard of a subject. The change in these coefficients either increase or decrease the baseline hazard $\lambda_{0}(t)$.
 A positive sign for $\beta_{i}$ (*coef* in the *summary* function in *lifelines* package) denotes that risk of an event is higher. In contrary, a negative sign means that the risk of the event is lower. Also, if partial hazard (*exp(coef)* in the mentioned *summary*) equals to one that states that it will have no effect on the hazard for this covariate, if it is less than one it reduces the hazard and vice versa.
@@ -210,22 +210,22 @@ Earlier, we assumed that predictors (covariates) are constant during the follow-
 The changes over time can be incorporated by using a modification of the Cox model above. 
 
 This extents the person-time of individuals into intervals with different length. The key assumption of including time-varying covariates is that it's effect does not depend on time.
-Time-variant features should be used when it is hypothesized that the predicted hazard depends significantly on later values of the covariate than the value of the covariate at baseline. 
+Time-variant features should be used when it is hypothesized that the predicted hazard depends significantly on later values of the covariate than the value of the covariate at baseline.[15]
 
-Before running Cox regression model including new covariates it is necessary to pre-process the dataset into so-called "long" format (where each duration is represented in *start* and *stop* view).
+Before running Cox regression model including new covariates it is necessary to pre-process the dataset into so-called "long" format (where each duration is represented in *start* and *stop* view). [8]
 
 ![data_time_format](/blog/img/seminar/group2_SurvivalAnalysis/subset_data_time.png)
 
-Fitting the Cox model on modified time-varying data involves using gradient descent (as well as for standard proportional hazard model). Special built-in functions in *lifelines* package take extra effort to help with convergence of the data (high collinearity between some variables).
+Fitting the Cox model on modified time-varying data involves using gradient descent (as well as for standard proportional hazard model). Special built-in functions in *lifelines* package take extra effort to help with convergence of the data (high collinearity between some variables).[8]
 
 #### Random Survival Forests
 
 Another feasible machine learning approach which can be used to avoid proportional constraint of Cox proportional hazard model is is the random survival forest (RSF). 
-The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. Сonstructing ensembles from base learners, such as trees, can substantially improve prediction performance.
+The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. Сonstructing ensembles from base learners, such as trees, can substantially improve prediction performance. [13]
 
 Basically, RSF computes a random forest using the log-rank test as the splitting criterion. It computes the cumulative hazards of the leaf nodes and averages them over the ensemble. 
 
-Further technical implementation is based on *scikit-survival* package, which was built on top of *scikit-learn*: that allows implementation of survival analysis while utilizing the power of scikit-learn.
+Further technical implementation is based on *scikit-survival* package, which was built on top of *scikit-learn*: that allows implementation of survival analysis while utilizing the power of scikit-learn. [14]
 
 ```python
 rsf = RandomSurvivalForest(n_estimators=50,
@@ -238,7 +238,6 @@ rsf = RandomSurvivalForest(n_estimators=50,
                            
 rsf.fit(X_rf_train, y_rf_train)                           
 ```
-
 ---
 
 # 5. Deep Learning in Survival Analysis<a class="anchor" id="deeplearning_sa"></a>
@@ -1244,8 +1243,6 @@ The dataset used for the blogpost features the case of right-censoring but the r
 
 [4] Liberato Camilleri (March 2019): History of survival snalysis - https://timesofmalta.com/articles/view/history-of-survival-analysis.705424
 
-
-
 [5] Sucharith Thoutam (July 2016): A brief introduction to survival analysis
 
 [6] Taimur Zahid (March 2019): Survival Analysis - Part A - https://towardsdatascience.com/survival-analysis-part-a-70213df21c2e 
@@ -1260,9 +1257,16 @@ The dataset used for the blogpost features the case of right-censoring but the r
 
 [11] Hazard Function: Simple Definition - https://www.statisticshowto.datasciencecentral.com/hazard-function/ (accessed 29.01.2020)
 
-[1]<a class="anchor" id="ref-one"></a> Jared L. Katzman, Uri Shaham, Alexander Cloninger, Jonathan Bates, Tingting Jiang,
-and Yuval Kluger. DeepSurv: personalized treatment recommender system using a Cox
-proportional hazards deep neural network. 2018.
+[12] Jared L. Katzman, Uri Shaham, Alexander Cloninger, Jonathan Bates, Tingting Jiang,
+and Yuval Kluger (2018): DeepSurv: personalized treatment recommender system using a Cox
+proportional hazards deep neural network - https://arxiv.org/abs/1606.00931
+ 
+[13] Hemant Ishwaran, Udaya B. Kogalur,
+Eugene H. Blackstone and Michael S. Lauer (2008): Random Survival Forests - https://arxiv.org/pdf/0811.1645.pdf
+
+[14] 'scikit-survival' package - https://scikit-survival.readthedocs.io/en/latest/
+
+[15] Time-to-event Analysis - https://www.mailman.columbia.edu/research/population-health-methods/time-event-data-analysis
 
 [x] Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar (April 2018): DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks
 
@@ -1272,4 +1276,3 @@ proportional hazards deep neural network. 2018.
 
 [a] Sebastian Rude (October 2017): An Overview of Multi-Task Learning in Deep Neural Networks
 
-[[1]](#ref-one)    #### put in texts above as link to reference list
