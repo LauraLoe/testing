@@ -3,7 +3,7 @@ title = "Deep Learning for Survival analysis"
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
-author = "Seminar Information Systems WS19/20 - Laura LГ¶schmann, Daria Smorodina" 
+author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Introduction to Survival Analysis and following research with Neural Networks"
@@ -12,7 +12,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 # Deep Learning for Survival Analysis
 ---
-#### Authors: Laura LГ¶schmann, Daria Smorodina
+#### Authors: Laura Löschmann, Daria Smorodina
 ---
 
 ## Table of content
