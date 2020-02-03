@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-01' 
+date = '2020-02-06' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
@@ -138,7 +138,7 @@ The graph below shows an example for censorship concept exactly for the given mo
 Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or different event occurs (right-censoring).
 This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. Since the survival analysis was developed to solve this problem, all given values would be taken for further research.
 
-![event_distrib](/blog/img/seminar/group2_SurvivalAnalysis/event_distrib.png)
+![event_distrib](/blog/img/seminar/group2_SurvivalAnalysis/event.png)
 
 Further computation for survival analysis requires a specific dataset format: *total_obs_time* column represents calculated lifetime duration for each borrower (for censored objects it would be a study time, for defaulted - time taken before event happening), *default_time* corresponds to event indicator (1 for experienced and 0 in case of censoring) and *X* - p-dimensional feature vector.
 
@@ -174,7 +174,7 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
 
-![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf_1.png)
+![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
@@ -238,9 +238,15 @@ Further technical implementation is based on *scikit-survival* package, which wa
 
 # 5. Deep Learning in Survival Analysis<a class="anchor" id="deeplearning_sa"></a>
 
+Over the past years, a significant amount of research in machine learning has been conducted in combining survival analysis with neural networks. With development of deep learning technologies and computational capacities it is possible to achieve outstanding results and implement range of architectures on sizeable datasets with different underlying processes and more individual learning inside. 
+
+We can define particular groups of methods regading deep learning in survival analysis. 
+- The first is based on further development of baseline Cox Proportional hazard model: **DeepSurv** (section 5.1), **Cox-nnet** (extension of CoxPH on specific geneteic datasets) [16].
+- As an alternative approach, fully parametric survival models like **RNN-SURV** (Giunchiglia1 2018) are able to handle time-invariance in comparison to above mentioned models [17].
+- On the other hand, a new deep learning neural network, **DeepHit**, was developed to process the survival data with competing risks (section 5.2).
+
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
-Data preprocessing
 
 ```python
 labtrans = CoxTime.label_transform()
@@ -990,6 +996,10 @@ Eugene H. Blackstone and Michael S. Lauer (2008): Random Survival Forests - http
 [14] 'scikit-survival' package - https://scikit-survival.readthedocs.io/en/latest/
 
 [15] Time-to-event Analysis - https://www.mailman.columbia.edu/research/population-health-methods/time-event-data-analysis
+
+[16] Travers Ching,Xun Zhu,Lana X. Garmire (2018):  Cox-nnet: An artificial neural network method for prognosis prediction of high-throughput omics data - https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1006076
+
+[17] Eleonora Giunchiglia, Anton Nemchenko, and Mihaela van der Schaar (2018):  RNN-SURV: A Deep Recurrent Model for Survival Analysis - http://medianetlab.ee.ucla.edu/papers/RNN_SURV.pdf
 
 [x] Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar (April 2018): DeepHit: A Deep Learning Approach to Survival Analysis with Competing Risks
 
