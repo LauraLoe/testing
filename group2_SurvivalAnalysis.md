@@ -11,7 +11,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 
 # Deep Learning for Survival Analysis
----
+
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ## Table of content
@@ -33,6 +33,8 @@ description = "Introduction to Survival Analysis and following research with Neu
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
 
+---
+
 # 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
@@ -40,7 +42,8 @@ Previously impairment losses on financial assets were only recognised to the ext
 
 To implement the new accounting rules banks need to build models that can evaluate a borrower's risk as accurately as possible.  A key credit risk parameter is the probability of default. Classification techniques such as logistic regression and decision trees can be used in order to classify the risky from the non-risky loans. These classification techniques however do not take the timing of default into account. With the use of survival analysis more accurate credit risks calculations are enabled since these analysis refers to a set of statistical techniques that is able to estimate the time it takes for a customer to default.
 
-<br>
+---
+
 # 2. Introduction to Survival Analysis <a class="anchor" id="introduction_sa"></a>
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
