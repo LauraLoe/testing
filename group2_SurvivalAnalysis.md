@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-06' 
+date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
