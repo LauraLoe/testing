@@ -377,37 +377,6 @@ ev = EvalSurv(deepsurv, durations_test, events_test, censor_surv='km')
 ev.concordance_td()
 ```
 
-```python
-time_grid = np.linspace(durations_test.min(), durations_test.max(), 100)
-_ = ev.brier_score(time_grid).plot()
-```
-
-![png](output_199_0.png)
-
-
-
-```python
-ev.integrated_brier_score(time_grid)
-```
-
-
-
-
-    0.11487176920079373
-
-
-
-
-```python
-ev.integrated_nbll(time_grid)
-```
-
-
-
-
-    1.6275194724001085
-
-
 ---
 
 ## 5.2 DeepHit<a class="anchor" id="deephit"></a> 
