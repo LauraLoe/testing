@@ -174,7 +174,7 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
 
-![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
+![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf_1.png)
 
 ---
 
