@@ -758,7 +758,7 @@ $$F_{k^{*}}(t^{*}|x^{*}) = \sum_{s^{*}=0}^{t^{*}}P(s=s^{*},k=k^{*}|x=x^{*})$$
 
 This function expresses the probability that a particular event k occurs on or before time t conditional on covariates x. To get the estimated CIF, the sum of the probabilities from the first observation time to the time, the event k occurred, is computed.
 
-$$ \hat{F}_{k^{*}}(s^{*}|x^{*}) = \sum_{m=0}^{s^{*}}y^{*}_{k,m}$$
+$$\hat{F}_{k^{*}}(s^{*}|x^{*}) = \sum_{m=0}^{s^{*}}y^{*}_{k,m}$$
 
 The cause-specific ranking loss function adapts the idea of concordance. A customer that experienced the event k on a specific time t should have a higher probability than a customer that will experience the event sometime after this specific time t. The ranking loss function therefore compares pairs of customers that experienced the same event of interest and penalizes an incorrect ordering of pairs.
 
