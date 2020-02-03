@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-06' 
+date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
@@ -796,7 +796,6 @@ The dataset used for the blogpost features the case of right-censoring but the r
 
 ![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpg)
 
---- 
 
 # 8. References<a class="anchor" id="references"></a>
 
