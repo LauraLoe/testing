@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-01' 
+date = '2020-02-06' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
@@ -119,7 +119,6 @@ We used the real-world dataset of 50.000 US mortgage borrowers which was provide
 The data is given in a "snapshot" panel format and represents a collection of US residential mortgage portfolios over 60 periods. Loan can originate before the initial start of our study and paid after it will be finished as well.
 
 ![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
-
 
 When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
 In the given dataset we are able to inspect this process using the key information from following features:
@@ -250,92 +249,17 @@ rsf.fit(X_rf_train, y_rf_train)
 
 # 5. Deep Learning in Survival Analysis<a class="anchor" id="deeplearning_sa"></a>
 
+
+
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
 
-```python
-# For preprocessing
-import sklearn_pandas
-from sklearn_pandas import DataFrameMapper 
 
-from sklearn.model_selection import train_test_split
-
-import torch
-import torchtuples as tt
-
-from pycox.evaluation import EvalSurv
-from pycox.models import CoxPH, CoxCC, CoxTime
-
-from pycox.models.cox_time import MLPVanillaCoxTime
-```
-
-
-```python
-# We also set some seeds to make this reproducable.
-# Note that on gpu, there is still some randomness.
-np.random.seed(1234)
-_ = torch.manual_seed(123)
-```
-
-### Data preprocessing
-
-
-```python
-data_ds = data_cox.copy()
-```
-
-
-```python
-#data_ds = data_ds.drop('id', axis = 1)
-```
-
-
-```python
-df_train = data_ds.copy()
-```
-
-
-```python
-df_test = df_train.sample(frac=0.2)
-df_train = df_train.drop(df_test.index)
-df_val = df_train.sample(frac=0.2)
-df_train = df_train.drop(df_val.index)
-```
-
-
-```python
-cols_stand = ['balance_time', 'LTV_time', 'origination_time', 'maturity_time',
-       'interest_rate_time', 'house_price_index_time', 'gdp_time', 'unemployment_rate_time',
-       'balance_orig_time', 'FICO_orig_time',
-       'LTV_orig_time', 'interest_rate_orig_time', 'house_price_index_orig_time']
-
-cols_leave = ['investor_orig_time', 'real_estate_condominium',
-       'real_estate_planned_urban_dev', 'real_estate_single_family_home', 'total_obs_time', 'default_time']
-
-#standardize = [([col], StandardScaler) for col in cols_stand]
-
-standardize = [([col], StandardScaler()) for col in cols_stand]
-leave = [(col, None) for col in cols_leave]
-
-x_mapper = DataFrameMapper(standardize + leave)
-x_train = x_mapper.fit_transform(df_train).astype('float32')
-x_val = x_mapper.transform(df_val).astype('float32')
-x_test = x_mapper.transform(df_test).astype('float32')
-```
-
-
-```python
-print(x_train.shape, x_test.shape, x_val.shape)
-```
-
-    (32000, 19) (10000, 19) (8000, 19)
-    
-
+Data preprocessing
 
 ```python
 labtrans = CoxTime.label_transform()
 ```
-
 
 ```python
 get_target = lambda df: (df['total_obs_time'].values, df['default_time'].values)
@@ -344,7 +268,6 @@ y_val = labtrans.transform(*get_target(df_val))
 durations_test, events_test = get_target(df_test)
 val = tt.tuplefy(x_val, y_val)
 ```
-
 
 ```python
 '''
@@ -409,19 +332,6 @@ network_ds = Sequential(
 
 
 
-
-    '\nnetwork_ds = Sequential(\n    Linear(in_features, n_nodes),\n    ReLU(),\n    BatchNorm1d(n_nodes),\n    Dropout(0.2),\n    \n    Linear(n_nodes, n_nodes),\n    ReLU(),\n    BatchNorm1d(n_nodes),\n    Dropout(0.2),\n        \n    Linear(n_nodes, n_nodes),\n    ReLU(),\n    BatchNorm1d(n_nodes),\n    Dropout(0.2),\n    Linear(n_nodes, out_features)\n)\n'
-
-
-
-
-```python
-net_ds
-```
-
-
-
-
     MLPVanilla(
       (net): Sequential(
         (0): DenseVanillaBlock(
@@ -459,9 +369,6 @@ net_ds
 model_deepsurv = CoxPH(net_ds, tt.optim.Adam)
 ```
 
-### Training the model
-
-
 ```python
 batch_size = 128
 ```
@@ -472,21 +379,9 @@ lrfinder = model_deepsurv.lr_finder(x_train, y_train, batch_size, tolerance=10)
 _ = lrfinder.plot()
 ```
 
-
-![png](output_182_0.png)
-
-
-
 ```python
 lrfinder.get_best_lr()
 ```
-
-
-
-
-    0.020092330025650584
-
-
 
 
 ```python
@@ -562,10 +457,7 @@ log = model_deepsurv.fit(x_train, y_train, batch_size, epochs, callbacks, verbos
 _ = log.plot()
 ```
 
-
 ![png](output_188_0.png)
-
-
 
 ```python
 model_deepsurv.partial_log_likelihood(*val).mean()
@@ -1240,6 +1132,7 @@ The dataset used for the blogpost features the case of right-censoring but the r
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 
+![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpeg)
 
 # 8. References<a class="anchor" id="references"></a>
 
