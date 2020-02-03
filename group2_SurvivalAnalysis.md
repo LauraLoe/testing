@@ -3,7 +3,7 @@ title = "Deep Learning for Survival analysis"
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
-author = "Seminar Information Systems WS19/20 - Laura LГ¶schmann, Daria Smorodina" 
+author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Introduction to Survival Analysis and following research with Neural Networks"
@@ -12,7 +12,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 # Deep Learning for Survival Analysis
 ---
-#### Authors: Laura LГ¶schmann, Daria Smorodina
+#### Authors: Laura Löschmann, Daria Smorodina
 ---
 
 ## Table of content
@@ -49,7 +49,7 @@ To implement the new accounting rules banks need to build models that can evalua
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
 
-The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name вЂљSurvival AnalysisвЂ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
+The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name 'Survival Analysis' comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
 
 Survival Analysis can be used in the field of health insurance to evaluate insurance premiums. It can be a useful tool in customer retention e.g. in order to estimate the time a customer probably will discontinue its subscription. With this information the company can intervene with some incentives early enough to retain its customer. The accurate prediction of upcoming churners results in highly-targeted campaigns, limiting the resources spent on customers who likely would have stayed anyway.
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
