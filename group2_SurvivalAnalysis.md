@@ -245,6 +245,7 @@ rsf = RandomSurvivalForest(n_estimators=50,
                            
 rsf.fit(X_rf_train, y_rf_train)                           
 ```
+
 ---
 
 # 5. Deep Learning in Survival Analysis<a class="anchor" id="deeplearning_sa"></a>
@@ -330,41 +331,6 @@ network_ds = Sequential(
 '''
 ```
 
-
-
-    MLPVanilla(
-      (net): Sequential(
-        (0): DenseVanillaBlock(
-          (linear): Linear(in_features=19, out_features=256, bias=True)
-          (activation): ReLU()
-          (batch_norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (dropout): Dropout(p=0.4, inplace=False)
-        )
-        (1): DenseVanillaBlock(
-          (linear): Linear(in_features=256, out_features=256, bias=True)
-          (activation): ReLU()
-          (batch_norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (dropout): Dropout(p=0.4, inplace=False)
-        )
-        (2): DenseVanillaBlock(
-          (linear): Linear(in_features=256, out_features=256, bias=True)
-          (activation): ReLU()
-          (batch_norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (dropout): Dropout(p=0.4, inplace=False)
-        )
-        (3): DenseVanillaBlock(
-          (linear): Linear(in_features=256, out_features=256, bias=True)
-          (activation): ReLU()
-          (batch_norm): BatchNorm1d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
-          (dropout): Dropout(p=0.4, inplace=False)
-        )
-        (4): Linear(in_features=256, out_features=1, bias=False)
-      )
-    )
-
-
-
-
 ```python
 model_deepsurv = CoxPH(net_ds, tt.optim.Adam)
 ```
@@ -394,13 +360,6 @@ model_deepsurv.optimizer.param_groups[0]['lr']
 ```
 
 
-
-
-    0.001
-
-
-
-
 ```python
 epochs = 512
 
@@ -415,44 +374,6 @@ log = model_deepsurv.fit(x_train, y_train, batch_size, epochs, callbacks, verbos
                 val_data=val, val_batch_size=batch_size)
 ```
 
-    0:	[4s / 4s],		train_loss: 1.9863,	val_loss: 1.3404
-    1:	[4s / 9s],		train_loss: 1.5710,	val_loss: 1.2413
-    2:	[4s / 13s],		train_loss: 1.4730,	val_loss: 1.2831
-    3:	[4s / 17s],		train_loss: 1.4188,	val_loss: 1.1973
-    4:	[4s / 22s],		train_loss: 1.3922,	val_loss: 1.1636
-    5:	[4s / 27s],		train_loss: 1.3742,	val_loss: 1.1751
-    6:	[4s / 31s],		train_loss: 1.3561,	val_loss: 1.1691
-    7:	[4s / 36s],		train_loss: 1.3360,	val_loss: 1.1749
-    8:	[4s / 41s],		train_loss: 1.3199,	val_loss: 1.1696
-    9:	[4s / 45s],		train_loss: 1.3161,	val_loss: 1.1587
-    10:	[4s / 50s],		train_loss: 1.3026,	val_loss: 1.1544
-    11:	[4s / 55s],		train_loss: 1.3060,	val_loss: 1.1409
-    12:	[4s / 59s],		train_loss: 1.2941,	val_loss: 1.1413
-    13:	[4s / 1m:4s],		train_loss: 1.2915,	val_loss: 1.1594
-    14:	[4s / 1m:8s],		train_loss: 1.2798,	val_loss: 1.1357
-    15:	[4s / 1m:13s],		train_loss: 1.2804,	val_loss: 1.1394
-    16:	[4s / 1m:17s],		train_loss: 1.2777,	val_loss: 1.1440
-    17:	[4s / 1m:22s],		train_loss: 1.2713,	val_loss: 1.1497
-    18:	[4s / 1m:27s],		train_loss: 1.2602,	val_loss: 1.1403
-    19:	[4s / 1m:31s],		train_loss: 1.2611,	val_loss: 1.1359
-    20:	[4s / 1m:36s],		train_loss: 1.2645,	val_loss: 1.1457
-    21:	[4s / 1m:41s],		train_loss: 1.2601,	val_loss: 1.1320
-    22:	[4s / 1m:45s],		train_loss: 1.2609,	val_loss: 1.1450
-    23:	[4s / 1m:49s],		train_loss: 1.2564,	val_loss: 1.1264
-    24:	[4s / 1m:54s],		train_loss: 1.2593,	val_loss: 1.1339
-    25:	[4s / 1m:58s],		train_loss: 1.2522,	val_loss: 1.1760
-    26:	[4s / 2m:3s],		train_loss: 1.2563,	val_loss: 1.1305
-    27:	[4s / 2m:7s],		train_loss: 1.2506,	val_loss: 1.1296
-    28:	[4s / 2m:11s],		train_loss: 1.2461,	val_loss: 1.1272
-    29:	[4s / 2m:16s],		train_loss: 1.2465,	val_loss: 1.1299
-    30:	[4s / 2m:20s],		train_loss: 1.2466,	val_loss: 1.1478
-    31:	[4s / 2m:24s],		train_loss: 1.2438,	val_loss: 1.1376
-    32:	[5s / 2m:30s],		train_loss: 1.2423,	val_loss: 1.1320
-    33:	[4s / 2m:34s],		train_loss: 1.2422,	val_loss: 1.1390
-    Wall time: 2min 34s
-    
-
-
 ```python
 _ = log.plot()
 ```
@@ -464,23 +385,9 @@ model_deepsurv.partial_log_likelihood(*val).mean()
 ```
 
 
-
-
-    -5.242654
-
-
-
-
 ```python
 model_deepsurv.score_in_batches(val)
 ```
-
-
-
-
-    {'loss': 4.915094375610352}
-
-
 
 ### Prediction
 
@@ -535,19 +442,10 @@ ev = EvalSurv(deepsurv, durations_test, events_test, censor_surv='km')
 ev.concordance_td()
 ```
 
-
-
-
-    0.8424150843984598
-
-
-
-
 ```python
 time_grid = np.linspace(durations_test.min(), durations_test.max(), 100)
 _ = ev.brier_score(time_grid).plot()
 ```
-
 
 ![png](output_199_0.png)
 
@@ -1095,7 +993,7 @@ print('========================================================')
 
 # 6. Evaluation<a class="anchor" id="evaluation"></a>
 
-For the evaluation of survival analysis models the performance measures need to take censored data into account. The most common evaluation metric in survival analysis is the concordance index. It shows the model`s ability to correctly provide a reliable ranking of the survival times based on the individual risk scores. The idea behind concordance is that a subject that dies at time s should have a higher risk at time s than a subject who survives beyond time s. The concordance index expresses the proportion of concordant pairs in a dataset, thus estimates the probability that, for a random pair of individuals, the predicted survival times of the two individuals have the same ordering as their true survival times. A concordance index of 1 represents a model with perfect prediction, an index of 0.5 is equal to random prediction.
+For the evaluation of survival analysis models the performance measures need to take censored data into account. The most common evaluation metric in survival analysis is the concordance index. It shows the model's ability to correctly provide a reliable ranking of the survival times based on the individual risk scores. The idea behind concordance is that a subject that dies at time s should have a higher risk at time s than a subject who survives beyond time s. The concordance index expresses the proportion of concordant pairs in a dataset, thus estimates the probability that, for a random pair of individuals, the predicted survival times of the two individuals have the same ordering as their true survival times. A concordance index of 1 represents a model with perfect prediction, an index of 0.5 is equal to random prediction.
 For a better understanding of this definition the concordance index is calculated on some simple example predictions. The following table shows the true default times of four theoretical customers along with default time predictions of three different models.
 
 
