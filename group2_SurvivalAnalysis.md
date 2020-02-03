@@ -11,7 +11,9 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 
 # Deep Learning for Survival Analysis
+
 ---
+
 #### Authors: Laura Löschmann, Daria Smorodina
 
 ---
@@ -34,6 +36,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 6. [Evaluation](#evaluation)  <br />
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
+
 ---
 
 # 1. Motivation - Business case <a class="anchor" id="motivation"></a>
@@ -117,8 +120,6 @@ The main goal of survival analysis is to estimate and interpret survival and/or 
 
 We used the real-world dataset of 50.000 US mortgage borrowers which was provided by International Financial Research (www.internationalfinancialresearch.org). 
 The data is given in a "snapshot" panel format and represents a collection of US residential mortgage portfolios over 60 periods. Loan can originate before the initial start of our study and paid after it will be finished as well.
-
-![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
 
 When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
 In the given dataset we are able to inspect this process using the key information from following features:
@@ -250,228 +251,7 @@ rsf.fit(X_rf_train, y_rf_train)
 
 # 5. Deep Learning in Survival Analysis<a class="anchor" id="deeplearning_sa"></a>
 
-
-
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
-
-
-
-Data preprocessing
-
-```python
-labtrans = CoxTime.label_transform()
-```
-
-```python
-get_target = lambda df: (df['total_obs_time'].values, df['default_time'].values)
-y_train = labtrans.fit_transform(*get_target(df_train))
-y_val = labtrans.transform(*get_target(df_val))
-durations_test, events_test = get_target(df_test)
-val = tt.tuplefy(x_val, y_val)
-```
-
-```python
-'''
-get_target = lambda df: (df['total_obs_time'].values, df['default_time'].values)
-y_train = get_target(df_train)
-y_val = get_target(df_val)
-durations_test, events_test = get_target(df_test)
-val = x_val, y_val
-'''
-```
-
-### Simple NN
-
-
-```python
-from torch.nn import Dropout, Linear, Sequential, ReLU, SELU, BatchNorm1d
-from torch.optim import SGD, Adam
-```
-
-
-```python
-n_nodes = 256
-```
-
-
-```python
-in_features = x_train.shape[1]
-num_nodes = [n_nodes, n_nodes, n_nodes, n_nodes]
-out_features = 1
-batch_norm = True
-dropout = 0.4
-output_bias = False
-```
-
-
-```python
-net_ds = tt.practical.MLPVanilla(in_features, num_nodes, out_features, batch_norm, dropout, output_bias=output_bias)
-```
-
-
-```python
-'''
-network_ds = Sequential(
-    Linear(in_features, n_nodes),
-    ReLU(),
-    BatchNorm1d(n_nodes),
-    Dropout(0.2),
-    
-    Linear(n_nodes, n_nodes),
-    ReLU(),
-    BatchNorm1d(n_nodes),
-    Dropout(0.2),
-        
-    Linear(n_nodes, n_nodes),
-    ReLU(),
-    BatchNorm1d(n_nodes),
-    Dropout(0.2),
-    Linear(n_nodes, out_features)
-)
-'''
-```
-
-```python
-model_deepsurv = CoxPH(net_ds, tt.optim.Adam)
-```
-
-```python
-batch_size = 128
-```
-
-
-```python
-lrfinder = model_deepsurv.lr_finder(x_train, y_train, batch_size, tolerance=10)
-_ = lrfinder.plot()
-```
-
-```python
-lrfinder.get_best_lr()
-```
-
-
-```python
-model_deepsurv.optimizer.set_lr(0.001)
-```
-
-
-```python
-model_deepsurv.optimizer.param_groups[0]['lr']
-```
-
-
-```python
-epochs = 512
-
-callbacks = [tt.callbacks.EarlyStopping()]
-verbose = True
-```
-
-
-```python
-%%time
-log = model_deepsurv.fit(x_train, y_train, batch_size, epochs, callbacks, verbose,
-                val_data=val, val_batch_size=batch_size)
-```
-
-```python
-_ = log.plot()
-```
-
-![png](output_188_0.png)
-
-```python
-model_deepsurv.partial_log_likelihood(*val).mean()
-```
-
-
-```python
-model_deepsurv.score_in_batches(val)
-```
-
-### Prediction
-
-
-```python
-_ = model_deepsurv.compute_baseline_hazards()
-```
-
-
-```python
-deepsurv = model_deepsurv.predict_surv_df(x_test)
-```
-
-
-```python
-deepsurv.iloc[:, :5].plot()
-plt.ylabel('S(t | x)')
-_ = plt.xlabel('Time')
-```
-
-
-![png](output_194_0.png)
-
-
-
-```python
-model_deepsurv.baseline_hazards_.head()
-```
-
-
-
-
-    duration
-    -0.984273    0.000192
-    -0.898189    0.000487
-    -0.812104    0.001240
-    -0.726020    0.003143
-    -0.639936    0.009442
-    Name: baseline_hazards, dtype: float32
-
-
-
-### Evaluation Metrics
-
-
-```python
-ev = EvalSurv(deepsurv, durations_test, events_test, censor_surv='km')
-```
-
-
-```python
-ev.concordance_td()
-```
-
-```python
-time_grid = np.linspace(durations_test.min(), durations_test.max(), 100)
-_ = ev.brier_score(time_grid).plot()
-```
-
-![png](output_199_0.png)
-
-
-
-```python
-ev.integrated_brier_score(time_grid)
-```
-
-
-
-
-    0.11487176920079373
-
-
-
-
-```python
-ev.integrated_nbll(time_grid)
-```
-
-
-
-
-    1.6275194724001085
-
 
 
 ---
@@ -1024,12 +804,11 @@ The second step is to check if these possible pairs are concordant. The first th
 
 The dataset used for the blogpost features the case of right-censoring but the reason for censoring is that these customers are still in the phase of repaying and their loans has not matured yet. Therefore the time of censoring is equal to the last observation time. Due to this the case that some customer default after a customer was censored is not possible. The example of the concordance index in case of right-censoring is shown for the sake of completeness since other survival datasets can have this case. A medical dataset for example can have data about patients with a heart disease. If a patient dies due to different reasons than a heart disease this patient would be censored. This can happen during the observation time and other patients can die due to a heart disease at a later time.
 
-
 ---
 
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
-
+---
 
 # 8. References<a class="anchor" id="references"></a>
 
@@ -1073,4 +852,3 @@ Eugene H. Blackstone and Michael S. Lauer (2008): Random Survival Forests - http
 [z] Rich Caruana (1997): Multitask Learning
 
 [a] Sebastian Rude (October 2017): An Overview of Multi-Task Learning in Deep Neural Networks
-
