@@ -96,6 +96,8 @@ At the start of the study (t=0), no subject has experienced the event yet. There
 
 ---
 
+<iframe src="https://giphy.com/embed/SWzYf20mp6mhy3N1Gy" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/tvland-tv-land-king-of-queens-kingofqueens-SWzYf20mp6mhy3N1Gy">via GIPHY</a></p>
+
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
 
