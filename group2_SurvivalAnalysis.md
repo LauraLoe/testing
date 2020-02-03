@@ -138,7 +138,7 @@ The graph below shows an example for censorship concept exactly for the given mo
 Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or different event occurs (right-censoring).
 This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. Since the survival analysis was developed to solve this problem, all given values would be taken for further research.
 
-![event_distrib](/blog/img/seminar/group2_SurvivalAnalysis/event.png)
+![event](/blog/img/seminar/group2_SurvivalAnalysis/event.png)
 
 Further computation for survival analysis requires a specific dataset format: *total_obs_time* column represents calculated lifetime duration for each borrower (for censored objects it would be a study time, for defaulted - time taken before event happening), *default_time* corresponds to event indicator (1 for experienced and 0 in case of censoring) and *X* - p-dimensional feature vector.
 
@@ -174,7 +174,7 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
 
-![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
+![kmf](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
