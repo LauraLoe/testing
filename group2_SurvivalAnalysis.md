@@ -238,6 +238,166 @@ Further technical implementation is based on *scikit-survival* package, which wa
 
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
+Data preprocessing
+
+```python
+labtrans = CoxTime.label_transform()
+
+get_target = lambda df: (df['total_obs_time'].values, df['default_time'].values)
+y_train = labtrans.fit_transform(*get_target(df_train))
+y_val = labtrans.transform(*get_target(df_val))
+durations_test, events_test = get_target(df_test)
+val = tt.tuplefy(x_val, y_val)
+
+```
+
+Simple NN
+
+
+```python
+from torch.nn import Dropout, Linear, Sequential, ReLU, SELU, BatchNorm1d
+from torch.optim import SGD, Adam
+
+n_nodes = 256
+```
+
+```python
+in_features = x_train.shape[1]
+num_nodes = [n_nodes, n_nodes, n_nodes, n_nodes]
+out_features = 1
+batch_norm = True
+dropout = 0.4
+output_bias = False
+```
+
+```python
+net_ds = tt.practical.MLPVanilla(in_features, num_nodes, out_features, batch_norm, dropout, output_bias=output_bias)
+```
+
+```python
+model_deepsurv = CoxPH(net_ds, tt.optim.Adam)
+```
+
+```python
+batch_size = 128
+
+lrfinder = model_deepsurv.lr_finder(x_train, y_train, batch_size, tolerance=10)
+_ = lrfinder.plot()
+lrfinder.get_best_lr()
+
+model_deepsurv.optimizer.set_lr(0.001)
+model_deepsurv.optimizer.param_groups[0]['lr']
+```
+
+```python
+epochs = 512
+
+callbacks = [tt.callbacks.EarlyStopping()]
+verbose = True
+```
+
+```python
+%%time
+log = model_deepsurv.fit(x_train, y_train, batch_size, epochs, callbacks, verbose,
+                val_data=val, val_batch_size=batch_size)
+```
+
+```python
+_ = log.plot()
+```
+
+```python
+model_deepsurv.partial_log_likelihood(*val).mean()
+```
+
+
+```python
+model_deepsurv.score_in_batches(val)
+```
+
+### Prediction
+
+
+```python
+_ = model_deepsurv.compute_baseline_hazards()
+```
+
+
+```python
+deepsurv = model_deepsurv.predict_surv_df(x_test)
+```
+
+
+```python
+deepsurv.iloc[:, :5].plot()
+plt.ylabel('S(t | x)')
+_ = plt.xlabel('Time')
+```
+
+
+![png](output_194_0.png)
+
+
+
+```python
+model_deepsurv.baseline_hazards_.head()
+```
+
+
+
+
+    duration
+    -0.984273    0.000192
+    -0.898189    0.000487
+    -0.812104    0.001240
+    -0.726020    0.003143
+    -0.639936    0.009442
+    Name: baseline_hazards, dtype: float32
+
+
+
+### Evaluation Metrics
+
+
+```python
+ev = EvalSurv(deepsurv, durations_test, events_test, censor_surv='km')
+```
+
+
+```python
+ev.concordance_td()
+```
+
+```python
+time_grid = np.linspace(durations_test.min(), durations_test.max(), 100)
+_ = ev.brier_score(time_grid).plot()
+```
+
+![png](output_199_0.png)
+
+
+
+```python
+ev.integrated_brier_score(time_grid)
+```
+
+
+
+
+    0.11487176920079373
+
+
+
+
+```python
+ev.integrated_nbll(time_grid)
+```
+
+
+
+
+    1.6275194724001085
+
 
 ---
 
