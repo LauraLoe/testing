@@ -118,6 +118,8 @@ The main goal of survival analysis is to estimate and interpret survival and/or 
 We used the real-world dataset of 50.000 US mortgage borrowers which was provided by International Financial Research (www.internationalfinancialresearch.org). 
 The data is given in a "snapshot" panel format and represents a collection of US residential mortgage portfolios over 60 periods. Loan can originate before the initial start of our study and paid after it will be finished as well.
 
+![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
+
 When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
 In the given dataset we are able to inspect this process using the key information from following features:
 - various timestamps for loan origination, future maturity and first appearance in the survival study
@@ -231,18 +233,6 @@ The random survival forest is defined as tree method that constructs an ensemble
 Basically, RSF computes a random forest using the log-rank test as the splitting criterion. It computes the cumulative hazards of the leaf nodes and averages them over the ensemble. 
 
 Further technical implementation is based on *scikit-survival* package, which was built on top of *scikit-learn*: that allows implementation of survival analysis while utilizing the power of scikit-learn. [14]
-
-```python
-rsf = RandomSurvivalForest(n_estimators=50,
-                           min_samples_split=7,
-                           min_samples_leaf=10,
-                           max_features="sqrt",
-                           n_jobs=-1,
-                           random_state=rstate,
-                           verbose=1)
-                           
-rsf.fit(X_rf_train, y_rf_train)                           
-```
 
 ---
 
@@ -804,6 +794,7 @@ The dataset used for the blogpost features the case of right-censoring but the r
 ---
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
+![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpeg)
 
 # 8. References<a class="anchor" id="references"></a>
 
