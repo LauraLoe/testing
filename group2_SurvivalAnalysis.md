@@ -56,9 +56,6 @@ The methods of survival analysis can also be applied in the field of engineering
 
 ---
 
-![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
-
-
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
 Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
 The subjects whose data were collected for survival analysis usually do not have the same time of first observation. A subject can enter the study at any time. Using durations ensure a necessary relativeness. [6] Referring to the business case the birth event is the initial recognition of a loan, the death event, consequently the event of interest, describes the time a customer defaulted and the duration is the time between the initial recognition and the event of default.
@@ -120,6 +117,9 @@ The main goal of survival analysis is to estimate and interpret survival and/or 
 
 We used the real-world dataset of 50.000 US mortgage borrowers which was provided by International Financial Research (www.internationalfinancialresearch.org). 
 The data is given in a "snapshot" panel format and represents a collection of US residential mortgage portfolios over 60 periods. Loan can originate before the initial start of our study and paid after it will be finished as well.
+
+![giphy](/blog/img/seminar/group2_SurvivalAnalysis/giphy.gif)
+
 
 When a person applies for mortgage lenders (banks) want to know value of risk they would take by loaning money. 
 In the given dataset we are able to inspect this process using the key information from following features:
