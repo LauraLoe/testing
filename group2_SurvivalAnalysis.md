@@ -11,8 +11,10 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 
 # Deep Learning for Survival Analysis
-
+---
 #### Authors: Laura Löschmann, Daria Smorodina
+
+---
 
 ## Table of content
 1. [Motivation](#motivation) <br/>
@@ -32,7 +34,6 @@ description = "Introduction to Survival Analysis and following research with Neu
 6. [Evaluation](#evaluation)  <br />
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
-
 ---
 
 # 1. Motivation - Business case <a class="anchor" id="motivation"></a>
