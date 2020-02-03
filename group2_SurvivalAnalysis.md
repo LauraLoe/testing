@@ -754,7 +754,7 @@ The log-likelihood function also consists out of two terms. The first term captu
 
 $L_{2}$ is a combination of cause-specific ranking loss functions since DeepHit is a multi-task learning model and therefore needs cause-specific loss functions for training. The ranking loss function incorporates the estimated cumulative incidence function calculated at the time the specific event occurred. The formula of the cumulative incidence function (CIF) is as follows:
 
-$$F_{k^{*}}(t^{*}|x^{*}) = \sum_{s^{*}=0}^{t^{*}}P(s=s^{*},k=k^{*}|x=x^{*})$$
+$$F_{k^{*}}(t^{*}|x^{*}) = \sum_{{s^{*}}=0}^{t^{*}}P(s=s^{*},k=k^{*}|x=x^{*})$$
 
 This function expresses the probability that a particular event k occurs on or before time t conditional on covariates x. To get the estimated CIF, the sum of the probabilities from the first observation time to the time, the event k occurred, is computed.
 
