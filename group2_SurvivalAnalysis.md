@@ -1131,6 +1131,8 @@ The dataset used for the blogpost features the case of right-censoring but the r
 
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
+---
+
 # 8. References<a class="anchor" id="references"></a>
 
 [1] IFRS 9 Financial Instruments - https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/#about (accessed: 29.01.2020)
