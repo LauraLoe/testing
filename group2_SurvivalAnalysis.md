@@ -1129,12 +1129,9 @@ The dataset used for the blogpost features the case of right-censoring but the r
 
 ---
 
-# 7. Conclusion<a class="anchor" id="conclusion"></a>
-
-
 ![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpeg)
 
----
+# 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 # 8. References<a class="anchor" id="references"></a>
 
