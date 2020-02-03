@@ -1,6 +1,6 @@
 +++ 
 title = "Deep Learning for Survival analysis" 
-date = '2020-02-01' 
+date = '2020-02-06' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
@@ -10,7 +10,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 +++
 
 
-# Deep Learning for Survival Analysis
+# Deep Learning for Survival Analysis - Test
 ---
 #### Authors: Laura Löschmann, Daria Smorodina
 ---
@@ -49,7 +49,7 @@ To implement the new accounting rules banks need to build models that can evalua
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
 
-The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name 'Survival Analysis' comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
+The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name ‚Survival Analysis‘ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
 
 Survival Analysis can be used in the field of health insurance to evaluate insurance premiums. It can be a useful tool in customer retention e.g. in order to estimate the time a customer probably will discontinue its subscription. With this information the company can intervene with some incentives early enough to retain its customer. The accurate prediction of upcoming churners results in highly-targeted campaigns, limiting the resources spent on customers who likely would have stayed anyway.
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
@@ -138,7 +138,7 @@ The graph below shows an example for censorship concept exactly for the given mo
 Some individuals defaulted before this time and the rest either continue their lifetime and experience the event later by close of study or different event occurs (right-censoring).
 This leads to one of the challenges in survival analysis: how to handle properly this information. In general distribution of event of interest (in graph below) more than 2/3 of inspected individuals labeled as "censored" and dropping out these observations will lead to significant information loss and biased outcome. Since the survival analysis was developed to solve this problem, all given values would be taken for further research.
 
-![event_distrib](/blog/img/seminar/group2_SurvivalAnalysis/event.png)
+![event](/blog/img/seminar/group2_SurvivalAnalysis/event.png)
 
 Further computation for survival analysis requires a specific dataset format: *total_obs_time* column represents calculated lifetime duration for each borrower (for censored objects it would be a study time, for defaulted - time taken before event happening), *default_time* corresponds to event indicator (1 for experienced and 0 in case of censoring) and *X* - p-dimensional feature vector.
 
@@ -161,7 +161,7 @@ The most convenient way to estimate the survival function using aforementioned a
 The key idea of Kaplan-Meier estimator is to break the estimation of survival function $S(t)$ into a smaller steps depending on observed event times. For each interval the probability of surviving until the end of this interval is calculated, given the following formula:
 
 $$ \hat{S(t)} = \prod_{i: t_i <= t}{\frac{n_i - d_i}{n_i}} ,$$
-where $n_i$ is a number of individuals who are at risk at time point $t_i$ and $d_i$ is a number of subjects with experienced event at time $t_i$.
+where $n_i$ is a number of individuals who are at risk at time point $t_i$ and $d_i$ is a number of subjects with experienced event at time $t_i$. [8]
 
 When using Kaplan-Meier Estimate, some assumptions must be taken into account:
 - All observations - both censored and with event of interest - are used in estimation
@@ -174,7 +174,7 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
 
-#### placeholder for kmf plot
+![kmf](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
@@ -189,7 +189,7 @@ $$ \lambda(t|x) = \lambda_{0}(t) exp(\beta_{1}x_1 + … + \beta_{n}x_n)$$
 - This method is considered as semi-parametric: it contains parametric set of covariates and non-parametric component $\lambda_{0}(t)$ which is called *baseline hazard*, the value of hazard when all covariates are equal to 0. 
 - The second component are *partial hazards* or *hazard ratios* and they define the hazard effect of observed covariates on baseline hazard $\lambda_{0}(t)$
 - These components are estimated by partial likelihood and are time-invariant
-- In general, Cox model makes an estimation of log-risk function $\lambda(t|x)$ as linear combination of it's static covariates and baseline hazard. 
+- In general, Cox model makes an estimation of log-risk function $\lambda(t|x)$ as linear combination of it's static covariates and baseline hazard. [8]
 
 The sign of partial hazards plays important role in general hazard of a subject. The change in these coefficients either increase or decrease the baseline hazard $\lambda_{0}(t)$.
 A positive sign for $\beta_{i}$ (*coef* in the *summary* function in *lifelines* package) denotes that risk of an event is higher. In contrary, a negative sign means that the risk of the event is lower. Also, if partial hazard (*exp(coef)* in the mentioned *summary*) equals to one that states that it will have no effect on the hazard for this covariate, if it is less than one it reduces the hazard and vice versa.
@@ -245,8 +245,9 @@ We can define particular groups of methods regading deep learning in survival an
 - As an alternative approach, fully parametric survival models like **RNN-SURV** (Giunchiglia1 2018) are able to handle time-invariance in comparison to above mentioned models [17].
 - On the other hand, a new deep learning neural network, **DeepHit**, was developed to process the survival data with competing risks (section 5.2).
 
-## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
+--- 
 
+## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
 ```python
 labtrans = CoxTime.label_transform()
@@ -376,48 +377,18 @@ ev = EvalSurv(deepsurv, durations_test, events_test, censor_surv='km')
 ev.concordance_td()
 ```
 
-```python
-time_grid = np.linspace(durations_test.min(), durations_test.max(), 100)
-_ = ev.brier_score(time_grid).plot()
-```
-
-![png](output_199_0.png)
-
-
-
-```python
-ev.integrated_brier_score(time_grid)
-```
-
-
-
-
-    0.11487176920079373
-
-
-
-
-```python
-ev.integrated_nbll(time_grid)
-```
-
-
-
-
-    1.6275194724001085
-
-
 ---
 
 ## 5.2 DeepHit<a class="anchor" id="deephit"></a> 
 
-The model called „DeepHit“ was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
+The model called "DeepHit" was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
 
 DeepHit is a deep neural network that learns the distribution of survival times directly. This means that this model does not do any assumptions about an underlying stochastic process, so both the parameters of the model as well as the form of the stochastic process depends on the covariates of the specific dataset used for survival analysis. [x]
 
 The model basically contains two parts, a shared sub-network and a family of cause-specific sub-networks. Due to this architecture a great advantage of DeepHit is that it easily can be used for survival datasets with one single risk but also with multiple competing risks.
 The dataset used so far describes one single risk, the risk of default. Customers that did not experience the event of interest are censored. The reasons for censorship can either be that the event of interest was not experienced or another event happened that also led to the end of observation, but is not the event of interest for survival analysis. 
 The original dataset has information about a second risk, the early repayment, also called payoff. For prior use the dataset was preprocessed in a way that customers with an early repayment were also labelled „censored“, because the only event of interest was the event of default. If the second risk also becomes the focus of attention in terms of survival analysis a second label for payoff (payoff = 2) can be introduced in the event column of the dataset. Therefore a competing risk is an event whose occurrence precludes the occurrence of the primary event of interest. [b]
+
 
 ```python
 data_cr = df.copy()
@@ -435,11 +406,170 @@ data_cr = data_cr.drop(['time','first_time','default_time','payoff_time','time_m
 data_cr.head(5)
 ```
 
-```python
-h = sns.catplot(x='duration', hue='event', kind='count',data=data_cr,height=5, aspect=3, palette="Set1")
-h.fig.subplots_adjust(top=0.9)
-h.fig.suptitle('Distribution of the time to event (competing risks)', fontsize=20)
-```
+
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>event</th>
+      <th>duration</th>
+      <th>orig_time</th>
+      <th>mat_time</th>
+      <th>balance_time</th>
+      <th>LTV_time</th>
+      <th>interest_rate_time</th>
+      <th>hpi_time</th>
+      <th>gdp_time</th>
+      <th>uer_time</th>
+      <th>REtype_CO_orig_time</th>
+      <th>REtype_PU_orig_time</th>
+      <th>REtype_SF_orig_time</th>
+      <th>investor_orig_time</th>
+      <th>balance_orig_time</th>
+      <th>FICO_orig_time</th>
+      <th>LTV_orig_time</th>
+      <th>Interest_Rate_orig_time</th>
+      <th>hpi_orig_time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>1</td>
+      <td>24</td>
+      <td>-7</td>
+      <td>113</td>
+      <td>29087.21</td>
+      <td>26.658065</td>
+      <td>9.200</td>
+      <td>146.45</td>
+      <td>2.715903</td>
+      <td>8.3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>45000.0</td>
+      <td>715</td>
+      <td>69.4</td>
+      <td>9.200</td>
+      <td>87.03</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>18</td>
+      <td>138</td>
+      <td>105654.77</td>
+      <td>65.469851</td>
+      <td>7.680</td>
+      <td>225.10</td>
+      <td>2.151365</td>
+      <td>4.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>107200.0</td>
+      <td>558</td>
+      <td>80.0</td>
+      <td>7.680</td>
+      <td>186.91</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>3</td>
+      <td>2</td>
+      <td>5</td>
+      <td>-6</td>
+      <td>114</td>
+      <td>44378.60</td>
+      <td>31.459735</td>
+      <td>11.375</td>
+      <td>217.37</td>
+      <td>1.692969</td>
+      <td>4.5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>48600.0</td>
+      <td>680</td>
+      <td>83.6</td>
+      <td>8.750</td>
+      <td>89.58</td>
+    </tr>
+    <tr>
+      <th>65</th>
+      <td>4</td>
+      <td>0</td>
+      <td>36</td>
+      <td>-2</td>
+      <td>119</td>
+      <td>52686.35</td>
+      <td>34.898842</td>
+      <td>10.500</td>
+      <td>189.82</td>
+      <td>2.836358</td>
+      <td>5.7</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>63750.0</td>
+      <td>587</td>
+      <td>81.8</td>
+      <td>10.500</td>
+      <td>97.99</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>18</td>
+      <td>138</td>
+      <td>52100.71</td>
+      <td>66.346343</td>
+      <td>9.155</td>
+      <td>222.39</td>
+      <td>2.361722</td>
+      <td>4.4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>52800.0</td>
+      <td>527</td>
+      <td>80.0</td>
+      <td>9.155</td>
+      <td>186.91</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
 
 To also handle competing risks DeepHit provides a flexible multi-task learning architecture.
 Multi-task learning was originally inspired by human learning activities. People often apply the  knowledge learned from previous tasks to help learn a new task. For example, for a person who learns to ride the bicycle and unicycle together, the experience in learning to ride a bicycle can be utilized in riding a unicycle and vice versa. Similar to human learning, it is useful for multiple learning tasks to be learned jointly since the knowledge contained in a task can be leveraged by other tasks. 
@@ -457,7 +587,7 @@ For the sake of completeness another approach to multi-task learning is soft par
 To train a multi-task learning model just as many loss functions as tasks are required. The model is then trained by backpropagation. The fact that the task-specific sub-networks share common hidden layers, allows comprehensive learning. Through the shared hidden layers features that are developed in the hidden layers of one task can also be used by other tasks. Multi-task learning enables features to be developed to support several tasks which would not be possible if multiple singe-task learning models would be trained on the related tasks in isolation. Also some hidden units can specialise on one task, providing information that are not important for the other tasks. By keeping the weights to these hidden units small gives these tasks the opportunity to ignore these hidden units. [z] 
 
 With multi-task learning a model can increase its performance due to several reasons. By using the data of multiple related tasks multi-task learning increases the sample size that is used to train the model which is a kind of implicit data augmentation. The network sees more labels, even though these labels are not the labels from the same task but highly related tasks. A model that learns different similar tasks simultaneously is able to learn a more general representation that captures all of the tasks.
-Moreover by learning multiple tasks together the network has to focus on important information rather than task-specific noise. The other tasks provide additional evidence for the relevance or irrelevance of the features and help to attract the network´s attention to focus on the important features.
+Moreover by learning multiple tasks together the network has to focus on important information rather than task-specific noise. The other tasks provide additional evidence for the relevance or irrelevance of the features and help to attract the networkВґs attention to focus on the important features.
 Some tasks are harder to learn even by themselves. A model can benefit from learning the hard task combined with an easier related task. Multi-task learning allows the model to eavesdrop, learn the hard task through the simple related task, and therefore learn the hard task easier and faster than learning the hard task in isolation. 
 In addition different related tasks can treat each other as a form of regularisation term since the model has to learn a general representation of all tasks. Learning the tasks in a single-task learning approach would bear the risk of overfitting on one task. [a] 
 
@@ -468,9 +598,10 @@ The other difference refers to the final output of the model. DeepHit uses one s
 
 $$y = [y_{1,1},...,y_{1,Tmax},...,y_{K,1},...,y_{K,Tmax}]$$
 
+
 The visualisation of the DeepHit model shows the architecture for a survival dataset of two competing risks. This architecture can easily be adjusted to more or less competing risks by adding   or removing cause-specific sub-networks. The architecture of the DeepHit model depends on the number of risks.
 
-To implement the model the [DeepHit repository](https://github.com/chl8856/DeepHit) has to be cloned to create a local copy on the computer.
+To implement the model the [DeepHit repository](https://github.com/chl8856/DeepHit) has to be cloned to create a local copy on the computer. The following packages need to be imported:
 
 
 ```python
@@ -599,11 +730,11 @@ The log-likelihood function also consists out of two terms. The first term captu
 
 $L_{2}$ is a combination of cause-specific ranking loss functions since DeepHit is a multi-task learning model and therefore needs cause-specific loss functions for training. The ranking loss function incorporates the estimated cumulative incidence function calculated at the time the specific event occurred. The formula of the cumulative incidence function (CIF) is as follows:
 
-$$F_{k^{*}}(t^{*}|x^{*}) = \sum_{s^{*}=0}^{t^{*}}P(s=s^{*},k=k^{*}|x=x^{*})$$
+$$F_{k^{*}}(t^{*}|x^{*}) = \sum_{{s^{*}}=0}^{t^{*}}P(s=s^{*},k=k^{*}|x=x^{*})$$
 
 This function expresses the probability that a particular event k occurs on or before time t conditional on covariates x. To get the estimated CIF, the sum of the probabilities from the first observation time to the time, the event k occurred, is computed.
 
-$$ \hat{F}_{k^{*}}(s^{*}|x^{*}) = \sum_{m=0}^{s^{*}}y^{*}_{k,m}$$
+$$\hat{F}_{k^{*}}(s^{*}|x^{*}) = \sum_{m=0}^{s^{*}}{y^{*}_{k,m}}$$
 
 The cause-specific ranking loss function adapts the idea of concordance. A customer that experienced the event k on a specific time t should have a higher probability than a customer that will experience the event sometime after this specific time t. The ranking loss function therefore compares pairs of customers that experienced the same event of interest and penalizes an incorrect ordering of pairs.
 
@@ -768,6 +899,7 @@ print('========================================================')
 For the evaluation of survival analysis models the performance measures need to take censored data into account. The most common evaluation metric in survival analysis is the concordance index. It shows the model's ability to correctly provide a reliable ranking of the survival times based on the individual risk scores. The idea behind concordance is that a subject that dies at time s should have a higher risk at time s than a subject who survives beyond time s. The concordance index expresses the proportion of concordant pairs in a dataset, thus estimates the probability that, for a random pair of individuals, the predicted survival times of the two individuals have the same ordering as their true survival times. A concordance index of 1 represents a model with perfect prediction, an index of 0.5 is equal to random prediction.
 For a better understanding of this definition the concordance index is calculated on some simple example predictions. The following table shows the true default times of four theoretical customers along with default time predictions of three different models.
 
+
 Ex. 1 | True default time | Model 1 | Model 2 |Model 3
 :-----:|:------:|:-----:|:------:|:------:
 Customer A|1|1|1|2
@@ -796,7 +928,6 @@ The second step is to check if these possible pairs are concordant. The first th
 The dataset used for the blogpost features the case of right-censoring but the reason for censoring is that these customers are still in the phase of repaying and their loans has not matured yet. Therefore the time of censoring is equal to the last observation time. Due to this the case that some customer default after a customer was censored is not possible. The example of the concordance index in case of right-censoring is shown for the sake of completeness since other survival datasets can have this case. A medical dataset for example can have data about patients with a heart disease. If a patient dies due to different reasons than a heart disease this patient would be censored. This can happen during the observation time and other patients can die due to a heart disease at a later time.
 
 
----
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 ![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpg)
