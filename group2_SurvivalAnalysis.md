@@ -11,11 +11,8 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 
 # Deep Learning for Survival Analysis
-
 ---
-
 #### Authors: Laura Löschmann, Daria Smorodina
-
 ---
 
 ## Table of content
@@ -805,10 +802,8 @@ The second step is to check if these possible pairs are concordant. The first th
 The dataset used for the blogpost features the case of right-censoring but the reason for censoring is that these customers are still in the phase of repaying and their loans has not matured yet. Therefore the time of censoring is equal to the last observation time. Due to this the case that some customer default after a customer was censored is not possible. The example of the concordance index in case of right-censoring is shown for the sake of completeness since other survival datasets can have this case. A medical dataset for example can have data about patients with a heart disease. If a patient dies due to different reasons than a heart disease this patient would be censored. This can happen during the observation time and other patients can die due to a heart disease at a later time.
 
 ---
-
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
----
 
 # 8. References<a class="anchor" id="references"></a>
 
