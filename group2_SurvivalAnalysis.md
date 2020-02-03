@@ -250,6 +250,9 @@ We can define particular groups of methods regading deep learning in survival an
 ## 5.1 DeepSurv<a class="anchor" id="deepsurv"></a>
 
 
+<script src="https://gist.github.com/dariasmorodina/815aab0d101aed33cfa9d03b9b055b15.js"></script>
+
+
 ```python
 labtrans = CoxTime.label_transform()
 
