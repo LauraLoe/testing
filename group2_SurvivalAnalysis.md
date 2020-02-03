@@ -3,7 +3,7 @@ title = "Deep Learning for Survival analysis"
 date = '2020-02-01' 
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
-author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
+author = "Seminar Information Systems WS19/20 - Laura LГ¶schmann, Daria Smorodina" 
 banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Introduction to Survival Analysis and following research with Neural Networks"
@@ -12,7 +12,7 @@ description = "Introduction to Survival Analysis and following research with Neu
 
 # Deep Learning for Survival Analysis
 ---
-#### Authors: Laura Löschmann, Daria Smorodina
+#### Authors: Laura LГ¶schmann, Daria Smorodina
 ---
 
 ## Table of content
@@ -49,7 +49,7 @@ To implement the new accounting rules banks need to build models that can evalua
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
 
-The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name ‚Survival Analysis‘ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
+The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name вЂљSurvival AnalysisвЂ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
 
 Survival Analysis can be used in the field of health insurance to evaluate insurance premiums. It can be a useful tool in customer retention e.g. in order to estimate the time a customer probably will discontinue its subscription. With this information the company can intervene with some incentives early enough to retain its customer. The accurate prediction of upcoming churners results in highly-targeted campaigns, limiting the resources spent on customers who likely would have stayed anyway.
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
@@ -57,7 +57,7 @@ The methods of survival analysis can also be applied in the field of engineering
 ---
 
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
-Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
+Survival analysis is a collection of data analysis methods with the outcome variable of interest вЂљtime to eventвЂ. In general вЂљeventвЂ describes the event of interest, also called **death event**, вЂљtimeвЂ refers to the point of time of first observation, also called **birth event**, and вЂљtime to eventвЂ is the **duration** between the first observation and the time the event occurs. [5]
 The subjects whose data were collected for survival analysis usually do not have the same time of first observation. A subject can enter the study at any time. Using durations ensure a necessary relativeness. [6] Referring to the business case the birth event is the initial recognition of a loan, the death event, consequently the event of interest, describes the time a customer defaulted and the duration is the time between the initial recognition and the event of default.
 
 During the observation time not every subject will experience the event of interest. Consequently it is unknown if the subjects will experience the event of interest in the future. The computation of the duration, the time from the first observation to the event of interest, is impossible. This special type kind of missing data can emerge due to two reasons:
@@ -65,7 +65,7 @@ During the observation time not every subject will experience the event of inter
 1. The subject is still part of the study but has not experienced the event of interest yet.
 2. The subject experienced a different event which also led to the end of study for this subject.
 
-In survival analysis this missing data is called **censorship** which refers to the inability to observe the variable of interest for the entire population. However, the censoring of data must be taken into account, dropping unobserved data would underestimate customer lifetimes and bias the results. Hence the particular subjects are labelled ‚censored‘.
+In survival analysis this missing data is called **censorship** which refers to the inability to observe the variable of interest for the entire population. However, the censoring of data must be taken into account, dropping unobserved data would underestimate customer lifetimes and bias the results. Hence the particular subjects are labelled вЂљcensoredвЂ.
 Since for the censored subjects the death event could not be observed, the type of censorship is called right censoring which is the most common one in survival analysis. As opposed to this there is left censoring in case the birth event could not be observed. 
 
 The first reason for censored cases regarding the use case are loans that have not matured yet and did not experience default by this time at the the moment of data gathering.
@@ -90,7 +90,7 @@ The set of statistic methods related to survival analysis has the goal to estima
 $$S(t) = Pr(T > t)$$
 
 T is the random lifetime taken from the population under study and cannot be negative. With regard to the business case it is the amount of time a customer is able to pay his loan rates, he is not defaulting. The survival function S (t) outputs values between 0 and 1 and is a non-increasing function of t.
-At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(∞) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
+At the start of the study (t=0), no subject has experienced the event yet. Therefore the probability S(0) of surviving beyond time 0 is one. S(в€ћ) =0 since if the study period were limitless, presumably everyone eventually would experience the event of interest and the probability of surviving would ultimately fall to zero. In theory the survival function is smooth, in practice the events are observed on a concrete time scale, e.g. days, weeks, months, etc., such that the graph of the survival function is like a step function. [9]
 
 ![survival_function](/blog/img/seminar/group2_SurvivalAnalysis/survival_function.png)
 
@@ -99,7 +99,7 @@ At the start of the study (t=0), no subject has experienced the event yet. There
 ## 2.3 Hazard Function<a class="anchor" id="hazard_function"></a>
 Derived from the survival function the hazard function h(t) gives the probability of the death event occurring at time t, given that the subject did not experience the death event until time t. It describes the instantaneous potential per unit time for the event to occur. [10]
 
-$$h(t) = \lim_{\delta t\to 0}\frac{Pr(t≤T≤t+\delta t | T>t)}{\delta t}$$
+$$h(t) = \lim_{\delta t\to 0}\frac{Pr(tв‰¤Tв‰¤t+\delta t | T>t)}{\delta t}$$
 
 Therefore the hazard function models which periods have the highest or lowest chances of an event. In contrast to the survival function, the hazard function does not have to start at 1 and go down to 0. The hazard rate usually changes over time. It can start anywhere and go up and down over time. For instance the probability of defaulting on a mortgage may be low in the beginning but can increase over the time of the mortgage.
 
@@ -174,7 +174,7 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
 
-![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
+![kmf](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
@@ -185,7 +185,7 @@ Regression in survival analysis involves not only time and censorship features b
 The Cox Proportional Hazard Model (1972) is widely used in multivariate survival statistics due to relatively easy implementation and informative interpretation.
 It describes relationships between survival distribution and covariates. The dependent variable is expressed by the hazard function (*or default intensity*) as follows:
 
-$$ \lambda(t|x) = \lambda_{0}(t) exp(\beta_{1}x_1 + … + \beta_{n}x_n)$$
+$$ \lambda(t|x) = \lambda_{0}(t) exp(\beta_{1}x_1 + вЂ¦ + \beta_{n}x_n)$$
 - This method is considered as semi-parametric: it contains parametric set of covariates and non-parametric component $\lambda_{0}(t)$ which is called *baseline hazard*, the value of hazard when all covariates are equal to 0. 
 - The second component are *partial hazards* or *hazard ratios* and they define the hazard effect of observed covariates on baseline hazard $\lambda_{0}(t)$
 - These components are estimated by partial likelihood and are time-invariant
@@ -228,7 +228,7 @@ Fitting the Cox model on modified time-varying data involves using gradient desc
 #### Random Survival Forests
 
 Another feasible machine learning approach which can be used to avoid proportional constraint of Cox proportional hazard model is is the random survival forest (RSF). 
-The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. Сonstructing ensembles from base learners, such as trees, can substantially improve prediction performance. [13]
+The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. РЎonstructing ensembles from base learners, such as trees, can substantially improve prediction performance. [13]
 
 Basically, RSF computes a random forest using the log-rank test as the splitting criterion. It computes the cumulative hazards of the leaf nodes and averages them over the ensemble. 
 
@@ -245,13 +245,13 @@ Further technical implementation is based on *scikit-survival* package, which wa
 
 ## 5.2 DeepHit<a class="anchor" id="deephit"></a> 
 
-The model called „DeepHit“ was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
+The model called вЂћDeepHitвЂњ was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
 
 DeepHit is a deep neural network that learns the distribution of survival times directly. This means that this model does not do any assumptions about an underlying stochastic process, so both the parameters of the model as well as the form of the stochastic process depends on the covariates of the specific dataset used for survival analysis. [x]
 
 The model basically contains two parts, a shared sub-network and a family of cause-specific sub-networks. Due to this architecture a great advantage of DeepHit is that it easily can be used for survival datasets with one single risk but also with multiple competing risks.
 The dataset used so far describes one single risk, the risk of default. Customers that did not experience the event of interest are censored. The reasons for censorship can either be that the event of interest was not experienced or another event happened that also led to the end of observation, but is not the event of interest for survival analysis. 
-The original dataset has information about a second risk, the early repayment, also called payoff. For prior use the dataset was preprocessed in a way that customers with an early repayment were also labelled „censored“, because the only event of interest was the event of default. If the second risk also becomes the focus of attention in terms of survival analysis a second label for payoff (payoff = 2) can be introduced in the event column of the dataset. Therefore a competing risk is an event whose occurrence precludes the occurrence of the primary event of interest. [b]
+The original dataset has information about a second risk, the early repayment, also called payoff. For prior use the dataset was preprocessed in a way that customers with an early repayment were also labelled вЂћcensoredвЂњ, because the only event of interest was the event of default. If the second risk also becomes the focus of attention in terms of survival analysis a second label for payoff (payoff = 2) can be introduced in the event column of the dataset. Therefore a competing risk is an event whose occurrence precludes the occurrence of the primary event of interest. [b]
 
 
 ```python
@@ -451,7 +451,7 @@ For the sake of completeness another approach to multi-task learning is soft par
 To train a multi-task learning model just as many loss functions as tasks are required. The model is then trained by backpropagation. The fact that the task-specific sub-networks share common hidden layers, allows comprehensive learning. Through the shared hidden layers features that are developed in the hidden layers of one task can also be used by other tasks. Multi-task learning enables features to be developed to support several tasks which would not be possible if multiple singe-task learning models would be trained on the related tasks in isolation. Also some hidden units can specialise on one task, providing information that are not important for the other tasks. By keeping the weights to these hidden units small gives these tasks the opportunity to ignore these hidden units. [z] 
 
 With multi-task learning a model can increase its performance due to several reasons. By using the data of multiple related tasks multi-task learning increases the sample size that is used to train the model which is a kind of implicit data augmentation. The network sees more labels, even though these labels are not the labels from the same task but highly related tasks. A model that learns different similar tasks simultaneously is able to learn a more general representation that captures all of the tasks.
-Moreover by learning multiple tasks together the network has to focus on important information rather than task-specific noise. The other tasks provide additional evidence for the relevance or irrelevance of the features and help to attract the network´s attention to focus on the important features.
+Moreover by learning multiple tasks together the network has to focus on important information rather than task-specific noise. The other tasks provide additional evidence for the relevance or irrelevance of the features and help to attract the networkВґs attention to focus on the important features.
 Some tasks are harder to learn even by themselves. A model can benefit from learning the hard task combined with an easier related task. Multi-task learning allows the model to eavesdrop, learn the hard task through the simple related task, and therefore learn the hard task easier and faster than learning the hard task in isolation. 
 In addition different related tasks can treat each other as a form of regularisation term since the model has to learn a general representation of all tasks. Learning the tasks in a single-task learning approach would bear the risk of overfitting on one task. [a] 
 
@@ -795,7 +795,6 @@ The dataset used for the blogpost features the case of right-censoring but the r
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 ![mortgage](/blog/img/seminar/group2_SurvivalAnalysis/mortgage.jpg)
-
 
 # 8. References<a class="anchor" id="references"></a>
 
