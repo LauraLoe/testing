@@ -4,7 +4,7 @@ date = '2020-02-01'
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
-banner = "img/seminar/sample/hu-logo.jpg"
+banner = "/blog/img/seminar/group2_SurvivalAnalysis/survive.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Introduction to Survival Analysis and following research with Neural Networks"
 +++
