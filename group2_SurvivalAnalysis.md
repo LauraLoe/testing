@@ -49,7 +49,7 @@ To implement the new accounting rules banks need to build models that can evalua
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
 
-The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name вЂљSurvival AnalysisвЂ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
+The development of survival analysis dates back to the 17th century with the first life table ever produced by English statistician John Graunt in 1662. The name ‚Survival Analysis‘ comes from the longstanding application of these methods since throughout centuries they were solely linked to investigating mortality rates. However, during the last decades the applications of the statistical methods of survival analysis have been extended beyond medical research to other fields. [4]
 
 Survival Analysis can be used in the field of health insurance to evaluate insurance premiums. It can be a useful tool in customer retention e.g. in order to estimate the time a customer probably will discontinue its subscription. With this information the company can intervene with some incentives early enough to retain its customer. The accurate prediction of upcoming churners results in highly-targeted campaigns, limiting the resources spent on customers who likely would have stayed anyway.
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
@@ -57,7 +57,7 @@ The methods of survival analysis can also be applied in the field of engineering
 ---
 
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
-Survival analysis is a collection of data analysis methods with the outcome variable of interest вЂљtime to eventвЂ. In general вЂљeventвЂ describes the event of interest, also called **death event**, вЂљtimeвЂ refers to the point of time of first observation, also called **birth event**, and вЂљtime to eventвЂ is the **duration** between the first observation and the time the event occurs. [5]
+Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
 The subjects whose data were collected for survival analysis usually do not have the same time of first observation. A subject can enter the study at any time. Using durations ensure a necessary relativeness. [6] Referring to the business case the birth event is the initial recognition of a loan, the death event, consequently the event of interest, describes the time a customer defaulted and the duration is the time between the initial recognition and the event of default.
 
 During the observation time not every subject will experience the event of interest. Consequently it is unknown if the subjects will experience the event of interest in the future. The computation of the duration, the time from the first observation to the event of interest, is impossible. This special type kind of missing data can emerge due to two reasons:
@@ -65,7 +65,7 @@ During the observation time not every subject will experience the event of inter
 1. The subject is still part of the study but has not experienced the event of interest yet.
 2. The subject experienced a different event which also led to the end of study for this subject.
 
-In survival analysis this missing data is called **censorship** which refers to the inability to observe the variable of interest for the entire population. However, the censoring of data must be taken into account, dropping unobserved data would underestimate customer lifetimes and bias the results. Hence the particular subjects are labelled вЂљcensoredвЂ.
+In survival analysis this missing data is called **censorship** which refers to the inability to observe the variable of interest for the entire population. However, the censoring of data must be taken into account, dropping unobserved data would underestimate customer lifetimes and bias the results. Hence the particular subjects are labelled ‚censored‘.
 Since for the censored subjects the death event could not be observed, the type of censorship is called right censoring which is the most common one in survival analysis. As opposed to this there is left censoring in case the birth event could not be observed. 
 
 The first reason for censored cases regarding the use case are loans that have not matured yet and did not experience default by this time at the the moment of data gathering.
