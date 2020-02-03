@@ -228,7 +228,7 @@ Fitting the Cox model on modified time-varying data involves using gradient desc
 #### Random Survival Forests
 
 Another feasible machine learning approach which can be used to avoid proportional constraint of Cox proportional hazard model is is the random survival forest (RSF). 
-The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. РЎonstructing ensembles from base learners, such as trees, can substantially improve prediction performance. [13]
+The random survival forest is defined as tree method that constructs an ensemble estimate for the cumulative hazard function. Сonstructing ensembles from base learners, such as trees, can substantially improve prediction performance. [13]
 
 Basically, RSF computes a random forest using the log-rank test as the splitting criterion. It computes the cumulative hazards of the leaf nodes and averages them over the ensemble. 
 
@@ -381,7 +381,7 @@ ev.concordance_td()
 
 ## 5.2 DeepHit<a class="anchor" id="deephit"></a> 
 
-The model called „DeepHit“ was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
+The model called "DeepHit" was introduced in a paper by Changhee Lee, William R. Zame, Jinsung Yoon, Mihaela van der Schaar in April 2018. It describes a deep learning approach to survival analysis implemented in a tensor flow environment.
 
 DeepHit is a deep neural network that learns the distribution of survival times directly. This means that this model does not do any assumptions about an underlying stochastic process, so both the parameters of the model as well as the form of the stochastic process depends on the covariates of the specific dataset used for survival analysis. [x]
 
