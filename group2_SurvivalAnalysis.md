@@ -14,8 +14,6 @@ description = "Introduction to Survival Analysis and following research with Neu
 ---
 #### Authors: Laura Löschmann, Daria Smorodina
 
-<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/SWzYf20mp6mhy3N1Gy" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/tvland-tv-land-king-of-queens-kingofqueens-SWzYf20mp6mhy3N1Gy">via GIPHY</a></p>
-
 ## Table of content
 1. [Motivation](#motivation) <br/>
 2. [Basics of Survival Analysis](#introduction_sa)<br/>
@@ -35,8 +33,6 @@ description = "Introduction to Survival Analysis and following research with Neu
 7. [Conclusion](#conclusion) <br />
 8. [References](#references) <br />
 
----
-
 # 1. Motivation - Business case <a class="anchor" id="motivation"></a>
 With the financial crisis hitting the United States and Europe in 2008, the International Accounting Standards Board (IASB) decided to revise their accounting standards for financial instruments, e.g. loans or mortgages to address perceived deficiencies which were believed to have contributed to the magnitude of the crisis.The result was the International Financial Reporting Standard (IFRS) 9 that became effective for all financial years beginning on or after 1 January 2018. [1]
 
@@ -44,8 +40,7 @@ Previously impairment losses on financial assets were only recognised to the ext
 
 To implement the new accounting rules banks need to build models that can evaluate a borrower's risk as accurately as possible.  A key credit risk parameter is the probability of default. Classification techniques such as logistic regression and decision trees can be used in order to classify the risky from the non-risky loans. These classification techniques however do not take the timing of default into account. With the use of survival analysis more accurate credit risks calculations are enabled since these analysis refers to a set of statistical techniques that is able to estimate the time it takes for a customer to default.
 
----
-
+<br>
 # 2. Introduction to Survival Analysis <a class="anchor" id="introduction_sa"></a>
 
 Survival analysis also called time-to event analysis refers to the set of statistical analyses that takes a series of observations and attempts to estimate the time it takes for an event of interest to occur. 
@@ -56,6 +51,10 @@ Survival Analysis can be used in the field of health insurance to evaluate insur
 The methods of survival analysis can also be applied in the field of engineering, e.g. to estimate the remaining useful life of machines.
 
 ---
+
+
+<div style="width:100%;height:0;padding-bottom:100%;position:relative;"><iframe src="https://giphy.com/embed/SWzYf20mp6mhy3N1Gy" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/tvland-tv-land-king-of-queens-kingofqueens-SWzYf20mp6mhy3N1Gy">via GIPHY</a></p>
+
 
 ## 2.1 Common terms <a class="anchor" id="terms"></a>
 Survival analysis is a collection of data analysis methods with the outcome variable of interest ‚time to event‘. In general ‚event‘ describes the event of interest, also called **death event**, ‚time‘ refers to the point of time of first observation, also called **birth event**, and ‚time to event‘ is the **duration** between the first observation and the time the event occurs. [5]
