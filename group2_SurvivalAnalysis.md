@@ -4,7 +4,7 @@ date = '2020-02-01'
 tags = [ "Deep Learning", "Neural Networks", "Statistics", "Survival Analysis",]
 categories = ["course projects"] 
 author = "Seminar Information Systems WS19/20 - Laura Löschmann, Daria Smorodina" 
-banner = "/blog/img/seminar/group2_SurvivalAnalysis/survive.jpg"
+banner = "img/seminar/sample/hu-logo.jpg"
 disqusShortname = "https-humbodt-wi-github-io-blog" 
 description = "Introduction to Survival Analysis and following research with Neural Networks"
 +++
@@ -173,6 +173,8 @@ The main disadvantage of this method is that it cannot estimate survival probabi
 
 The estimated $S(t)$ can be plotted as a stepwise function of all population-individuals and gives a nice way to make a visualization of survival experience.
 As an example, in the plot below, it is clear that for time $t = 10$ months the probability that borrowers survive after this time is about 75%.
+
+![kmf_plot](/blog/img/seminar/group2_SurvivalAnalysis/kmf.png)
 
 ---
 
