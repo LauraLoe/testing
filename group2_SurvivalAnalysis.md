@@ -1237,7 +1237,6 @@ The dataset used for the blogpost features the case of right-censoring but the r
 # 7. Conclusion<a class="anchor" id="conclusion"></a>
 
 
----
 
 # 8. References<a class="anchor" id="references"></a>
 
